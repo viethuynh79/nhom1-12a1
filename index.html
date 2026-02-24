@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="description" content="Website Nhóm 1 - Lớp 12A1 - Trường THPT Lê Quý Đôn, Buôn Ma Thuột, Đắk Lắk">
+    <meta name="keywords" content="Nhóm 1, 12A1, THPT Lê Quý Đôn, Buôn Ma Thuột, Đắk Lắk">
+    <meta property="og:title" content="Nhóm 1 - Lớp 12A1 - THPT Lê Quý Đôn">
+    <meta property="og:description" content="Website giới thiệu Nhóm 1, Lớp 12A1, Trường THPT Lê Quý Đôn">
+    
+    <title>Nhóm 1 - Lớp 12A1 - THPT Lê Quý Đôn</title>
+    <!-- Favicon SVG emoji 🎓 -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%23667eea'/><stop offset='100%25' stop-color='%23764ba2'/></linearGradient></defs><circle cx='50' cy='50' r='50' fill='url(%23g)'/><text y='.9em' font-size='60' text-anchor='middle' x='50'>🎓</text></svg>" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%23667eea'/><stop offset='100%25' stop-color='%23764ba2'/></linearGradient></defs><circle cx='50' cy='50' r='50' fill='url(%23g)'/><text y='.9em' font-size='60' text-anchor='middle' x='50'>🎓</text></svg>">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <div class="logo" data-translate="nav-logo">
+                <span class="logo-icon">🎓</span>
+                <span class="logo-text">Nhóm 1 - 12A1</span>
+            </div>
+            
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#home" class="nav-link" data-translate="nav-home">Trang Chủ</a></li>
+                <li><a href="#school" class="nav-link" data-translate="nav-school">Trường</a></li>
+                <li><a href="#class" class="nav-link" data-translate="nav-class">Lớp</a></li>
+                <li><a href="#group" class="nav-link" data-translate="nav-group">Nhóm</a></li>
+                <li><a href="#gallery" class="nav-link" data-translate="nav-gallery">Thư Viện</a></li>
+            </ul>
+            
+            <div class="nav-actions">
+                <button class="lang-switcher" id="lang-switcher" title="Chuyển ngôn ngữ">
+                    <i class="fas fa-globe"></i>
+                    <span class="lang-text">EN</span>
+                </button>
+                <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="background-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+            <div class="shape shape-5"></div>
+        </div>
+        
+        <div class="container hero-container">
+            <div class="hero-content">
+                <div class="school-badge" data-translate="hero-school">
+                    🏫 THPT Lê Quý Đôn
+                </div>
+                
+                <h1 class="hero-title-class" data-translate="hero-class">
+                    Lớp 12A1
+                </h1>
+                
+                <div class="group-badge">
+                    <span class="badge-star">⭐</span>
+                    <h2 class="hero-title-group" data-translate="hero-group">Nhóm 1</h2>
+                    <span class="badge-star">⭐</span>
+                </div>
+                
+                <p class="hero-subtitle" data-translate="hero-subtitle">
+                    Ba Thành Viên - Một Đội Ngũ
+                </p>
+                
+                <div class="hero-buttons">
+                    <a href="#group" class="btn btn-primary" data-translate="hero-btn-about">
+                        <i class="fas fa-users"></i>
+                        <span>Về Chúng Tôi</span>
+                    </a>
+                    <a href="https://c3lequydon.daklak.edu.vn/" target="_blank" class="btn btn-secondary" data-translate="hero-btn-school">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Website Trường</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator">
+            <span data-translate="scroll-down">Cuộn xuống</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- School Section -->
+    <section id="school" class="school section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label" data-translate="school-label">🏫 Về Trường</span>
+                <h2 class="section-title" data-translate="school-title">
+                    Trường THPT Lê Quý Đôn
+                </h2>
+                <p class="section-subtitle" data-translate="school-subtitle">
+                    26 Năm Xây Dựng và Phát Triển (2000 - 2026)
+                </p>
+            </div>
+            
+            <div class="school-content">
+                <!-- =============================================
+                     🖼️ ẢNH TRƯỜNG CHÍNH - VỊ TRÍ 1
+                     =============================================
+                     
+                     🔧 CÁCH THÊM ẢNH (CỰC DỄ!):
+                     1. Upload ảnh lên ImgBB hoặc Imgur
+                     2. Copy link ảnh (ví dụ: https://i.imgur.com/abc123.jpg)
+                     3. Paste vào src="" bên dưới
+                     4. Ví dụ: <img src="https://i.imgur.com/abc123.jpg">
+                     5. Lưu file và refresh trình duyệt
+                     6. XONG! ✅
+                     
+                     📏 Kích thước khuyến nghị: 1200x800px (tỷ lệ 3:2)
+                     📦 Định dạng: JPG, PNG, hoặc WebP
+                     💾 Dung lượng: < 500KB (đã nén)
+                     
+                     💡 Gợi ý nội dung ảnh:
+                     - Cổng trường THPT Lê Quý Đôn
+                     - Toàn cảnh khu học tập
+                     - Góc đẹp của trường
+                     
+                     ============================================= -->
+                <div class="school-image-container">
+                    <img src="https://cdn.giaoducthoidai.vn/images/ee5a2afac054f8ee50b39b4c12f670dff3cebc961702369fb712963110e7e2a82c1593b1d22f095c6a25ff8a471c3a66c8252cd66da87c280a236b269b817d13/1-1-lqd-6803.jpg" 
+                         alt="Trường THPT Lê Quý Đôn - Buôn Ma Thuột, Đắk Lắk" 
+                         class="school-image"
+                         loading="lazy">
+                </div>
+                
+                <div class="school-info">
+                    <div class="info-card">
+                        <div class="info-icon">📍</div>
+                        <div class="info-content">
+                            <h3 data-translate="school-address-label">Địa chỉ</h3>
+                            <p data-translate="school-address">27 Trần Nhật Duật, P. Buôn Ma Thuột, Tỉnh Đắk Lắk</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-icon">📅</div>
+                        <div class="info-content">
+                            <h3 data-translate="school-founded-label">Thành lập</h3>
+                            <p data-translate="school-founded">Năm 2000 (26 năm)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-icon">👥</div>
+                        <div class="info-content">
+                            <h3 data-translate="school-scale-label">Quy mô</h3>
+                            <p data-translate="school-scale">40 lớp - 1,738 học sinh - 103 giáo viên</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-icon">🏆</div>
+                        <div class="info-content">
+                            <h3 data-translate="school-achievement-label">Thành tích 2025-2026</h3>
+                            <p data-translate="school-achievement">7 HSG Quốc gia - 155 HSG Cấp trường - 23 Sản phẩm KHKT</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="school-description">
+                    <h3 data-translate="school-history-title">📜 Lịch Sử Hình Thành</h3>
+                    <p data-translate="school-history-p1">
+                        Tọa lạc tại phường Buôn Ma Thuột, tỉnh Đắk Lắk, Trường THPT Lê Quý Đôn là trường trung học phổ thông công lập được thành lập năm 2000. Trải qua 26 năm xây dựng và phát triển (2000 – 2026), nhà trường đã từng bước khẳng định vị thế là một cơ sở giáo dục ổn định, uy tín, được phụ huynh tin tưởng và học sinh lựa chọn.
+                    </p>
+                    <p data-translate="school-history-p2">
+                        Từ những ngày đầu còn nhiều khó khăn về cơ sở vật chất và quy mô đào tạo, đến nay Trường THPT Lê Quý Đôn đã không ngừng nỗ lực đổi mới, nâng cao chất lượng giáo dục, hướng đến mục tiêu phát triển toàn diện học sinh cả về tri thức, kỹ năng và nhân cách.
+                    </p>
+                    
+                    <h3 data-translate="school-facilities-title">🏗️ Cơ Sở Vật Chất Hiện Đại</h3>
+                    <p data-translate="school-facilities">
+                        Cơ sở vật chất của nhà trường ngày càng được đầu tư, hoàn thiện, đáp ứng tốt nhu cầu dạy và học. Trường có 43 phòng học kiên cố được trang bị tivi phục vụ giảng dạy; hệ thống phòng bộ môn Tin học, Vật lý, Hóa học, Sinh học, Ngoại ngữ; khu giáo dục thể chất hiện đại, thư viện từng bước áp dụng học liệu điện tử được khai thác hiệu quả, tạo môi trường học tập an toàn, thân thiện và hiện đại.
+                    </p>
+                    
+                    <h3 data-translate="school-quality-title">🎓 Chất Lượng Giáo Dục</h3>
+                    <p data-translate="school-quality">
+                        Nhà trường chú trọng nâng cao chất lượng giáo dục đại trà gắn với phát triển mũi nhọn. Công tác dạy học được đổi mới theo hướng phát huy năng lực học sinh, tăng cường ứng dụng công nghệ thông tin và trí tuệ nhân tạo, tổ chức học 2 buổi/ngày với các lớp bồi dưỡng học sinh giỏi, câu lạc bộ học thuật và năng khiếu.
+                    </p>
+                    
+                    <h3 data-translate="school-activities-title">🎭 Hoạt Động Ngoại Khóa</h3>
+                    <p data-translate="school-activities">
+                        Bên cạnh học tập, nhà trường quan tâm tổ chức nhiều hoạt động giáo dục kỹ năng sống và trải nghiệm sáng tạo như: trải nghiệm – hướng nghiệp dưới cờ, giờ ra chơi thân thiện, các câu lạc bộ âm nhạc, nhảy, truyền thông, thể thao, hoạt động thiện nguyện và phong trào Đoàn – Hội.
+                    </p>
+                    
+                    <h3 data-translate="school-vision-title">🚀 Định Hướng Phát Triển</h3>
+                    <p data-translate="school-vision">
+                        Bước vào giai đoạn phát triển mới, Trường THPT Lê Quý Đôn tiếp tục phát huy truyền thống 26 năm, chú trọng nâng cao chất lượng giáo dục toàn diện, đẩy mạnh chuyển đổi số, giáo dục STEM, xây dựng môi trường học đường kỷ cương – an toàn – hạnh phúc, đáp ứng yêu cầu đổi mới giáo dục và sự kỳ vọng của xã hội.
+                    </p>
+                </div>
+                
+                <div class="school-stats">
+                    <div class="stat-card">
+                        <div class="stat-number" data-stat="40">0</div>
+                        <div class="stat-label" data-translate="stat-classes">Lớp Học</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" data-stat="1738">0</div>
+                        <div class="stat-label" data-translate="stat-students">Học Sinh</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" data-stat="103">0</div>
+                        <div class="stat-label" data-translate="stat-teachers">Giáo Viên</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" data-stat="26">0</div>
+                        <div class="stat-label" data-translate="stat-years">Năm Thành Lập</div>
+                    </div>
+                </div>
+                
+                <div class="school-link">
+                    <a href="https://c3lequydon.daklak.edu.vn/" target="_blank" class="btn btn-primary btn-large">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span data-translate="school-website-btn">Truy Cập Website Trường</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Class Section -->
+    <section id="class" class="class section section-light">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label" data-translate="class-label">📚 Về Lớp</span>
+                <h2 class="section-title" data-translate="class-title">
+                    Lớp 12A1
+                </h2>
+                <p class="section-subtitle" data-translate="class-subtitle">
+                    Tập Thể Đoàn Kết - Năng Động - Sáng Tạo
+                </p>
+            </div>
+            
+            <div class="class-content">
+                <div class="class-info-grid">
+                    <div class="class-image-section">
+                        <!-- =============================================
+                             🖼️ ẢNH LỚP 12A1 - VỊ TRÍ 2
+                             =============================================
+                             
+                             🔧 CÁCH THÊM ẢNH:
+                             1. Upload ảnh lớp lên ImgBB/Imgur
+                             2. Copy link ảnh
+                             3. Paste vào src="" bên dưới
+                             
+                             📏 Kích thước: 1000x750px (tỷ lệ 4:3)
+                             📦 Định dạng: JPG, PNG, WebP
+                             
+                             💡 Gợi ý: Ảnh tập thể lớp 12A1
+                             
+                             ============================================= -->
+                        <img src="https://res.cloudinary.com/dcqyzxjdw/image/upload/v1771840549/12a1_szdouz.jpg" 
+                             alt="Lớp 12A1 - THPT Lê Quý Đôn" 
+                             class="class-image"
+                             loading="lazy">
+                    </div>
+                    
+                    <div class="class-info-cards">
+                        <div class="info-card-large">
+                            <div class="info-icon-large">👥</div>
+                            <div class="info-content-large">
+                                <h3 data-translate="class-students-label">Sĩ Số</h3>
+                                <p class="info-number">43</p>
+                                <p data-translate="class-students-desc">Học sinh năng động, sáng tạo</p>
+                            </div>
+                        </div>                                          
+
+                        <div class="info-card-large">
+                            <div class="info-icon-large">🏆</div>
+                            <div class="info-content-large">
+                                <h3 data-translate="class-awards-label">Giải Thưởng</h3>
+                                <p class="info-number">15+</p>
+                                <p data-translate="class-awards-desc">Giải Học Sinh Giỏi các môn</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="teacher-section">
+                    <h3 class="teacher-title" data-translate="teacher-title">
+                        👩‍🏫 Giáo Viên Chủ Nhiệm
+                    </h3>
+                    
+                    <div class="teacher-card">
+                        <div class="teacher-image-container">
+                            <!-- =============================================
+                                 🖼️ ẢNH GIÁO VIÊN CHỦ NHIỆM - VỊ TRÍ 3
+                                 =============================================
+                                 
+                                 🔧 CÁCH THÊM ẢNH:
+                                 1. Upload ảnh cô giáo lên hosting
+                                 2. Copy link ảnh
+                                 3. Paste vào src=""
+                                 
+                                 📏 Kích thước: 400x500px (chân dung)
+                                 📦 Định dạng: JPG, PNG, WebP
+                                 
+                                 💡 Gợi ý: Ảnh chân dung cô Lê Thị Hồng Hạnh
+                                 
+                                 ============================================= -->
+                            <img src="https://scontent.fbmv1-1.fna.fbcdn.net/v/t39.30808-6/472714074_1535610977156665_6513217416023991370_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=53a332&_nc_eui2=AeHiPwZBT8enQroYTHtyCQmnbqmEWJXjkDBuqYRYleOQMMwfY3InZ9B38QY0iBTscQ-n4zQeHBz1mXmHpoaRRz8E&_nc_ohc=20TF1kd1JrwQ7kNvwELTN2P&_nc_oc=AdnopjMOy6A0t1Qy4fqCO1zJ7-7v-th64SRLLhtsEdqWM9DaOYEvAE-nFLFGSbGHh6cmtDN5reyw0gh7KEIvYf_Z&_nc_zt=23&_nc_ht=scontent.fbmv1-1.fna&_nc_gid=fEPdWSQvBEWG8G38ZqbJBQ&oh=00_AfuJPxNgnYFkhccxB26BjBTCZG27zppFNDLvuBDBrXLt1w&oe=69A1F4CB" 
+                                 alt="Cô Lê Thị Hồng Hạnh - Giáo viên chủ nhiệm lớp 12A1" 
+                                 class="teacher-image"
+                                 loading="lazy">
+                        </div>
+                        
+                        <div class="teacher-info">
+                            <h4 class="teacher-name" data-translate="teacher-name">Lê Thị Hồng Hạnh</h4>
+                            <p class="teacher-role" data-translate="teacher-role">Giáo Viên Chủ Nhiệm</p>
+                            <p class="teacher-description" data-translate="teacher-description">
+                                Cô Hạnh là một giáo viên tận tâm với hơn 15 năm kinh nghiệm giảng dạy. Cô luôn quan tâm đến từng học sinh, tạo môi trường học tập thân thiện và khuyến khích các em phát triển toàn diện.
+                            </p>
+                            
+                            <div class="teacher-stats">
+                                <div class="teacher-stat-item">
+                                    <span class="stat-icon">📚</span>
+                                    <span data-translate="teacher-experience">15+ năm kinh nghiệm</span>
+                                </div>
+                                <div class="teacher-stat-item">
+                                    <span class="stat-icon">🏆</span>
+                                    <span data-translate="teacher-awards">Nhiều giải thưởng xuất sắc</span>
+                                </div>
+                                <div class="teacher-stat-item">
+                                    <span class="stat-icon">❤️</span>
+                                    <span data-translate="teacher-love">Yêu thương học trò</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Group Section -->
+    <section id="group" class="group section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label" data-translate="group-label">👥 Về Nhóm</span>
+                <h2 class="section-title-group" data-translate="group-title">
+                    🌟 Nhóm 1 🌟
+                </h2>
+                <p class="section-subtitle" data-translate="group-subtitle">
+                    Ba Thành Viên - Một Đội Ngũ
+                </p>
+            </div>
+            
+            <div class="group-intro">
+                <p data-translate="group-intro">
+                    Chúng tôi là Nhóm 1 của lớp 12A1, một nhóm gồm 3 thành viên với sự kết hợp hoàn hảo giữa sự năng động, sáng tạo và tinh thần đoàn kết. Mỗi thành viên đều mang trong mình những thế mạnh riêng, cùng nhau tạo nên một tập thể vững mạnh, sẵn sàng đối mặt với mọi thử thách.
+                </p>
+            </div>
+            
+            <div class="members-grid">
+                <!-- Member 1: Huỳnh Khánh Việt -->
+                <div class="member-card">
+                    <div class="member-card-inner">
+                        <div class="member-card-front">
+                            <div class="member-image-container">
+                                <!-- =============================================
+                                     🖼️ ẢNH HUỲNH KHÁNH VIỆT - VỊ TRÍ 4
+                                     =============================================
+                                     
+                                     🔧 CÁCH THÊM ẢNH:
+                                     1. Upload ảnh lên hosting
+                                     2. Copy link
+                                     3. Paste vào src=""
+                                     
+                                     📏 Kích thước: 500x500px (vuông)
+                                     📦 Định dạng: JPG, PNG, WebP
+                                     
+                                     💡 Gợi ý: Ảnh chân dung Huỳnh Khánh Việt
+                                     
+                                     ============================================= -->
+                                <img src="https://res.cloudinary.com/dcqyzxjdw/image/upload/v1771839036/z7501942997047_95c3e4e2fd1d273568f1ebccfee5b9d0_dutiwa.jpg" 
+                                     alt="Huỳnh Khánh Việt - Trưởng Nhóm 1" 
+                                     class="member-image"
+                                     loading="lazy">
+                                <div class="member-overlay">
+                                    <span data-translate="member-hover">Hover để xem chi tiết</span>
+                                </div>
+                            </div>
+                            
+                            <div class="member-info-preview">
+                                <div class="member-badges">
+                                    <span class="badge badge-leader" data-translate="badge-leader">👑 Trưởng Nhóm</span>
+                                    <span class="badge badge-male" data-translate="badge-male">♂️ Nam</span>
+                                </div>
+                                <h3 class="member-name">Huỳnh Khánh Việt</h3>
+                                <p class="member-role" data-translate="member1-role">Trưởng Nhóm 1</p>
+                            </div>
+                        </div>
+                        
+                        <div class="member-card-back">
+                            <p class="member-description" data-translate="member1-description">
+                                Là trưởng nhóm, Khánh Việt luôn thể hiện tinh thần trách nhiệm cao, khả năng lãnh đạo tốt và sự nhiệt tình trong mọi hoạt động. Bạn ấy có khả năng tổ chức, điều phối công việc hiệu quả và luôn động viên các thành viên khác.
+                            </p>
+                            <div class="member-strengths">
+                                <h4 data-translate="member-strengths-title">Điểm Mạnh:</h4>
+                                <ul>
+                                    <li data-translate="member1-strength1">🎯 Tư duy logic tốt</li>
+                                    <li data-translate="member1-strength2">💡 Sáng tạo trong ý tưởng</li>
+                                    <li data-translate="member1-strength3">👥 Kỹ năng lãnh đạo</li>
+                                    <li data-translate="member1-strength4">⚡ Làm việc hiệu quả</li>
+                                </ul>
+                            </div>
+                            <div class="member-contact">
+                                <a href="https://www.facebook.com/profile.php?id=61578466147493" class="social-link facebook" title="Facebook">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Member 2: Trương Thị Anh Thư -->
+                <div class="member-card">
+                    <div class="member-card-inner">
+                        <div class="member-card-front">
+                            <div class="member-image-container">
+                                <!-- =============================================
+                                     🖼️ ẢNH TRƯƠNG THỊ ANH THƯ - VỊ TRÍ 5
+                                     =============================================
+                                     
+                                     🔧 CÁCH THÊM ẢNH:
+                                     1. Upload ảnh lên hosting
+                                     2. Copy link
+                                     3. Paste vào src=""
+                                     
+                                     📏 Kích thước: 500x500px (vuông)
+                                     📦 Định dạng: JPG, PNG, WebP
+                                     
+                                     💡 Gợi ý: Ảnh chân dung Trương Thị Anh Thư
+                                     
+                                     ============================================= -->
+                                <img src="https://res.cloudinary.com/dcqyzxjdw/image/upload/v1771839163/thu_seg54u.jpg" 
+                                     alt="Trương Thị Anh Thư - Thành viên Nhóm 1" 
+                                     class="member-image"
+                                     loading="lazy">
+                                <div class="member-overlay">
+                                    <span data-translate="member-hover">Hover để xem chi tiết</span>
+                                </div>
+                            </div>
+                            
+                            <div class="member-info-preview">
+                                <div class="member-badges">
+                                    <span class="badge badge-member" data-translate="badge-member">⭐ Thành Viên</span>
+                                    <span class="badge badge-female" data-translate="badge-female">♀️ Nữ</span>
+                                </div>
+                                <h3 class="member-name">Trương Thị Anh Thư</h3>
+                                <p class="member-role" data-translate="member2-role">Thành Viên Nhóm 1</p>
+                            </div>
+                        </div>
+                        
+                        <div class="member-card-back">
+                            <p class="member-description" data-translate="member2-description">
+                                Anh Thư là người cẩn thận, tỉ mỉ trong công việc và có khả năng tổ chức tốt. Bạn ấy luôn đảm bảo mọi chi tiết đều được hoàn thành một cách chỉnh chu và đúng thời hạn. Tinh thần trách nhiệm cao và sự kiên nhẫn là điểm mạnh của Anh Thư.
+                            </p>
+                            <div class="member-strengths">
+                                <h4 data-translate="member-strengths-title">Điểm Mạnh:</h4>
+                                <ul>
+                                    <li data-translate="member2-strength1">✏️ Tỉ mỉ, cẩn thận</li>
+                                    <li data-translate="member2-strength2">📋 Tổ chức công việc tốt</li>
+                                    <li data-translate="member2-strength3">💪 Kiên nhẫn, bền bỉ</li>
+                                    <li data-translate="member2-strength4">🎨 Thẩm mỹ tốt</li>
+                                </ul>
+                            </div>
+                            <div class="member-contact">
+                                <a href="https://www.facebook.com/babicuti04" class="social-link facebook" title="Facebook">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Member 3: Phan Lê Hồng Oanh -->
+                <div class="member-card">
+                    <div class="member-card-inner">
+                        <div class="member-card-front">
+                            <div class="member-image-container">
+                                <!-- =============================================
+                                     🖼️ ẢNH PHAN LÊ HỒNG OANH - VỊ TRÍ 6
+                                     =============================================
+                                     
+                                     🔧 CÁCH THÊM ẢNH:
+                                     1. Upload ảnh lên hosting
+                                     2. Copy link
+                                     3. Paste vào src=""
+                                     
+                                     📏 Kích thước: 500x500px (vuông)
+                                     📦 Định dạng: JPG, PNG, WebP
+                                     
+                                     💡 Gợi ý: Ảnh chân dung Phan Lê Hồng Oanh
+                                     
+                                     ============================================= -->
+                                <img src="https://res.cloudinary.com/dcqyzxjdw/image/upload/v1771839106/oanh_clw7l3.jpg" 
+                                     alt="Phan Lê Hồng Oanh - Thành viên Nhóm 1" 
+                                     class="member-image"
+                                     loading="lazy">
+                                <div class="member-overlay">
+                                    <span data-translate="member-hover">Hover để xem chi tiết</span>
+                                </div>
+                            </div>
+                            
+                            <div class="member-info-preview">
+                                <div class="member-badges">
+                                    <span class="badge badge-member" data-translate="badge-member">⭐ Thành Viên</span>
+                                    <span class="badge badge-female" data-translate="badge-female">♀️ Nữ</span>
+                                </div>
+                                <h3 class="member-name">Phan Lê Hồng Oanh</h3>
+                                <p class="member-role" data-translate="member3-role">Thành Viên Nhóm 1</p>
+                            </div>
+                        </div>
+                        
+                        <div class="member-card-back">
+                            <p class="member-description" data-translate="member3-description">
+                                Hồng Oanh là người năng động, sáng tạo và luôn mang đến những ý tưởng mới mẻ cho nhóm. Bạn ấy có khả năng giao tiếp tốt, tạo không khí vui vẻ và tích cực trong mọi hoạt động. Sự nhiệt tình và tinh thần lạc quan của Hồng Oanh là động lực cho cả nhóm.
+                            </p>
+                            <div class="member-strengths">
+                                <h4 data-translate="member-strengths-title">Điểm Mạnh:</h4>
+                                <ul>
+                                    <li data-translate="member3-strength1">🎭 Sáng tạo, năng động</li>
+                                    <li data-translate="member3-strength2">💬 Giao tiếp tốt</li>
+                                    <li data-translate="member3-strength3">😊 Lạc quan, tích cực</li>
+                                    <li data-translate="member3-strength4">🌟 Nhiệt tình, hăng hái</li>
+                                </ul>
+                            </div>
+                            <div class="member-contact">
+                                <a href="https://www.facebook.com/yeutquangnhatt" class="social-link facebook" title="Facebook">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="group-strengths">
+                <h3 data-translate="group-strengths-title">💪 Điểm Mạnh Của Nhóm 1</h3>
+                <div class="strengths-grid">
+                    <div class="strength-card">
+                        <div class="strength-icon">🤝</div>
+                        <h4 data-translate="strength1-title">Đoàn Kết</h4>
+                        <p data-translate="strength1-desc">Tinh thần đồng đội cao, luôn hỗ trợ lẫn nhau</p>
+                    </div>
+                    <div class="strength-card">
+                        <div class="strength-icon">💡</div>
+                        <h4 data-translate="strength2-title">Sáng Tạo</h4>
+                        <p data-translate="strength2-desc">Nhiều ý tưởng mới mẻ và độc đáo</p>
+                    </div>
+                    <div class="strength-card">
+                        <div class="strength-icon">⚡</div>
+                        <h4 data-translate="strength3-title">Hiệu Quả</h4>
+                        <p data-translate="strength3-desc">Làm việc nhanh chóng và đạt kết quả tốt</p>
+                    </div>
+                    <div class="strength-card">
+                        <div class="strength-icon">🎯</div>
+                        <h4 data-translate="strength4-title">Trách Nhiệm</h4>
+                        <p data-translate="strength4-desc">Hoàn thành tốt mọi nhiệm vụ được giao</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery section section-light">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label" data-translate="gallery-label">🖼️ Thư Viện</span>
+                <h2 class="section-title" data-translate="gallery-title">
+                    Khoảnh Khắc Đáng Nhớ
+                </h2>
+                <p class="section-subtitle" data-translate="gallery-subtitle">
+                    Những Hình Ảnh Của Nhóm 1 - Lớp 12A1
+                </p>
+            </div>
+            
+            <!-- =============================================
+                 🖼️ THƯ VIỆN ẢNH - VỊ TRÍ 7 (6 ẢNH)
+                 =============================================
+                 
+                 🔧 CÁCH THÊM ẢNH:
+                 1. Upload 6 ảnh lên hosting
+                 2. Copy từng link ảnh
+                 3. Paste vào src="" của từng thẻ img bên dưới
+                 
+                 📏 Kích thước: 800x600px mỗi ảnh (tỷ lệ 4:3)
+                 📦 Định dạng: JPG, PNG, WebP
+                 
+                 💡 Gợi ý nội dung:
+                 - Ảnh hoạt động nhóm
+                 - Ảnh sự kiện lớp
+                 - Ảnh học tập
+                 - Ảnh ngoại khóa
+                 - Ảnh kỷ niệm
+                 
+                 ============================================= -->
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://res.cloudinary.com/dcqyzxjdw/image/upload/v1771840550/1_i2qn50.jpg" 
+                         alt="Hoạt động Nhóm 1 - Ảnh 1" 
+                         class="gallery-image"
+                         loading="lazy"
+                         style="width: 100%; height: 300px; object-fit: cover; border-radius: 12px;">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://res.cloudinary.com/dcqyzxjdw/image/upload/v1771840548/2_zxqjhs.jpg" 
+                         alt="Hoạt động Nhóm 1 - Ảnh 2" 
+                         class="gallery-image"
+                         loading="lazy"
+                         style="width: 100%; height: 300px; object-fit: cover; border-radius: 12px;">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://res.cloudinary.com/dcqyzxjdw/image/upload/v1771840548/3_nbm58n.jpg" 
+                         alt="Hoạt động Nhóm 1 - Ảnh 3" 
+                         class="gallery-image"
+                         loading="lazy"
+                         style="width: 100%; height: 300px; object-fit: cover; border-radius: 12px;">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://res.cloudinary.com/dcqyzxjdw/image/upload/v1771840550/4_bxqp6n.jpg" 
+                         alt="Hoạt động Nhóm 1 - Ảnh 4" 
+                         class="gallery-image"
+                         loading="lazy"
+                         style="width: 100%; height: 300px; object-fit: cover; border-radius: 12px;">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://res.cloudinary.com/dcqyzxjdw/image/upload/v1771840549/5_sn4mtn.jpg" 
+                         alt="Hoạt động Nhóm 1 - Ảnh 5" 
+                         class="gallery-image"
+                         loading="lazy"
+                         style="width: 100%; height: 300px; object-fit: cover; border-radius: 12px;">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://res.cloudinary.com/dcqyzxjdw/image/upload/v1771840549/6_cnni9p.jpg" 
+                         alt="Hoạt động Nhóm 1 - Ảnh 6" 
+                         class="gallery-image"
+                         loading="lazy"
+                         style="width: 100%; height: 300px; object-fit: cover; border-radius: 12px;">
+                </div>
+            </div>
+            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 data-translate="footer-about-title">📚 Về Chúng Tôi</h3>
+                    <p data-translate="footer-about-text">
+                        Nhóm 1 - Lớp 12A1 - Trường THPT Lê Quý Đôn. Ba thành viên, một tập thể đoàn kết, sáng tạo và năng động.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 data-translate="footer-contact-title">📞 Liên Hệ</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> <span data-translate="footer-address">27 Trần Nhật Duật, Buôn Ma Thuột</span></li>
+                        <li><i class="fas fa-school"></i> <span data-translate="footer-school">THPT Lê Quý Đôn</span></li>
+                        <li><i class="fas fa-users"></i> <span data-translate="footer-group">Nhóm 1 - Lớp 12A1</span></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 data-translate="footer-links-title">🔗 Liên Kết</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home" data-translate="footer-link-home">Trang Chủ</a></li>
+                        <li><a href="#school" data-translate="footer-link-school">Về Trường</a></li>
+                        <li><a href="#class" data-translate="footer-link-class">Về Lớp</a></li>
+                        <li><a href="#group" data-translate="footer-link-group">Về Nhóm</a></li>
+                        <li><a href="https://c3lequydon.daklak.edu.vn/" target="_blank" data-translate="footer-link-website">Website Trường</a></li>
+                    </ul>
+                </div>
+            
+            <div class="footer-bottom">
+                <p>
+                    &copy; 2026 <span data-translate="footer-copyright">Nhóm 1 - Lớp 12A1 - THPT Lê Quý Đôn</span>. 
+                    <span data-translate="footer-rights">All rights reserved.</span>
+                </p>
+                <p data-translate="footer-love">
+                    Made with ❤️ by Nhóm 1
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="back-to-top" title="Về đầu trang">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>
