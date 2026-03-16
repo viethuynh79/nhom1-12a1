@@ -79,7 +79,7 @@ document.getElementById('back-to-top').addEventListener('click', () => {
 // ============================================
 // CHỨC NĂNG 3: "NÃO BỘ" AI (DÙNG CHUNG CHO 2 KHUNG CHAT)
 // ============================================
-const API_KEY = 'DÁN_API_KEY_CỦA_BẠN_VÀO_ĐÂY'; // <-- Thay API Key Gemini vào đây
+const API_KEY = 'AIzaSyCzWiNYlc-XaoTcss7f394fw4sFlkcDOWA'; // <-- Thay API Key Gemini vào đây
 
 // Logic Ẩn/Hiện Khung Chat Nổi
 const aiAssistantBtn = document.getElementById('ai-assistant-btn');
