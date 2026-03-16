@@ -42,36 +42,27 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Smooth Scroll trượt êm khi click menu
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            const headerHeight = document.querySelector('.navbar').offsetHeight;
-            window.scrollTo({ top: target.offsetTop - headerHeight - 10, behavior: "smooth" });
-            const navMenu = document.getElementById('nav-menu');
-            if(navMenu) navMenu.classList.remove('active');
-        }
+// Đóng Menu Mobile khi nhấn vào một Link
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+        const navMenu = document.getElementById('nav-menu');
+        if(navMenu) navMenu.classList.remove('active');
     });
 });
 
 // ============================================
 // 2. "BỘ NÃO" AI - KẾT NỐI DEEPSEEK API
 // ============================================
-
-// ⚠️ CẢNH BÁO BẢO MẬT: Đặt API Key ở frontend (JS client) là rất nguy hiểm.
-// Bất kỳ ai cũng có thể f12 và lấy key này. Tốt nhất bạn nên có server trung gian.
 const DEEPSEEK_API_KEY = 'sk-069cb4fa81214690a5f173a13b723df6'; 
 
-const SYSTEM_PROMPT = "Bạn là ChatBot 12A1, trợ lý của Nhóm 1 lớp 12A1 THPT Lê Quý Đôn. Hãy xưng Mình, gọi Bạn/Cậu. Bạn là chuyên gia tư vấn hướng nghiệp và tâm lý học đường cực kỳ thân thiện.";
+const SYSTEM_PROMPT = "Bạn là Mentor 12A1, trợ lý của Nhóm 1 lớp 12A1 THPT Lê Quý Đôn. Hãy xưng Mình, gọi Bạn/Cậu. Bạn là chuyên gia tư vấn hướng nghiệp và tâm lý học đường cực kỳ thân thiện.";
 
 async function sendToDeepSeek(userText, msgBox) {
     const loadingId = 'loading-' + Date.now();
     const loadingDiv = document.createElement('div');
     loadingDiv.className = 'message bot-message';
     loadingDiv.id = loadingId;
-    loadingDiv.innerHTML = '<i>Tôi đang suy nghĩ... 🧠</i>';
+    loadingDiv.innerHTML = '<i>DeepSeek đang suy nghĩ... 🧠</i>';
     msgBox.appendChild(loadingDiv);
     msgBox.scrollTop = msgBox.scrollHeight;
 
@@ -87,7 +78,7 @@ async function sendToDeepSeek(userText, msgBox) {
                 'Authorization': `Bearer ${DEEPSEEK_API_KEY}`
             },
             body: JSON.stringify({
-                model: "deepseek-chat", // Model chuẩn của DeepSeek
+                model: "deepseek-chat",
                 messages: [
                     { role: "system", content: SYSTEM_PROMPT },
                     { role: "user", content: userText }
@@ -104,7 +95,6 @@ async function sendToDeepSeek(userText, msgBox) {
             const botText = data.choices[0].message.content;
             const resDiv = document.createElement('div');
             resDiv.className = 'message bot-message';
-            // Render Markdown cơ bản và xuống dòng
             resDiv.innerHTML = botText.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>').replace(/\n/g, '<br>');
             msgBox.appendChild(resDiv);
             msgBox.scrollTop = msgBox.scrollHeight;
@@ -124,51 +114,32 @@ async function sendToDeepSeek(userText, msgBox) {
     }
 }
 
-// Xử lý sự kiện gửi tin (Chat nhúng & Chat nổi)
-const chatConfigs = [
-    { in: 'embed-chat-input', btn: 'embed-send-btn', box: 'embed-chat-messages' },
-    { in: 'floating-chat-input', btn: 'floating-send-btn', box: 'floating-chat-messages' }
-];
+// Xử lý sự kiện gửi tin cho phần Chat ở Trang chủ
+const inputEl = document.getElementById('embed-chat-input');
+const btnEl = document.getElementById('embed-send-btn');
+const boxEl = document.getElementById('embed-chat-messages');
 
-chatConfigs.forEach(conf => {
-    const inputEl = document.getElementById(conf.in);
-    const btnEl = document.getElementById(conf.btn);
-    const boxEl = document.getElementById(conf.box);
-    if (btnEl && inputEl && boxEl) {
-        const action = () => {
-            const val = inputEl.value.trim();
-            if (val) {
-                const userDiv = document.createElement('div');
-                userDiv.className = 'message user-message';
-                userDiv.textContent = val;
-                boxEl.appendChild(userDiv);
-                inputEl.value = '';
-                sendToDeepSeek(val, boxEl);
-            }
-        };
-        btnEl.onclick = action;
-        inputEl.onkeypress = (e) => { if(e.key === 'Enter') action(); };
-    }
-});
-
-// ============================================
-// 3. XỬ LÝ GIAO DIỆN NAVBAR & NÚT AI NỔI
-// ============================================
-
-const aiTriggerBtn = document.getElementById('ai-trigger-btn');
-const chatContainer = document.getElementById('chatbox-container');
-const closeBtn = document.getElementById('close-chat-btn');
-const mobileBtn = document.getElementById('mobile-menu-btn');
-
-// Bật khung chat nổi khi nhấn nút Robot góc màn hình
-if(aiTriggerBtn) {
-    aiTriggerBtn.onclick = () => {
-        chatContainer.classList.add('active');
+if (btnEl && inputEl && boxEl) {
+    const action = () => {
+        const val = inputEl.value.trim();
+        if (val) {
+            const userDiv = document.createElement('div');
+            userDiv.className = 'message user-message';
+            userDiv.textContent = val;
+            boxEl.appendChild(userDiv);
+            inputEl.value = '';
+            sendToDeepSeek(val, boxEl);
+        }
     };
+    btnEl.onclick = action;
+    inputEl.onkeypress = (e) => { if(e.key === 'Enter') action(); };
 }
 
-// Đóng khung chat nổi
-if(closeBtn) closeBtn.onclick = () => chatContainer.classList.remove('active');
+// ============================================
+// 3. XỬ LÝ GIAO DIỆN NAVBAR
+// ============================================
+
+const mobileBtn = document.getElementById('mobile-menu-btn');
 
 // Bật tắt menu trên điện thoại
 if(mobileBtn) mobileBtn.onclick = () => document.getElementById('nav-menu').classList.toggle('active');
