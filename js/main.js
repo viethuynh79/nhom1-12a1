@@ -56,7 +56,7 @@ if(mobileMenuBtn) {
 // CHỨC NĂNG 3: "NÃO BỘ" AI (PHIÊN BẢN ỔN ĐỊNH - GEMINI PRO)
 // ============================================
 // 👇 DÁN MÃ API KEY CỦA CẬU VÀO GIỮA 2 DẤU NHÁY ĐƠN BÊN DƯỚI 👇
-const API_KEY = 'AIzaSyCzWiNYlc-XaoTcss7f394fw4sFlkcDOWA'; 
+const API_KEY = 'DÁN_API_KEY_CỦA_BẠN_VÀO_ĐÂY'; 
 
 const aiAssistantBtn = document.getElementById('ai-assistant-btn');
 const chatboxContainer = document.getElementById('chatbox-container');
@@ -82,4 +82,109 @@ function appendMessage(text, isBot, container) {
     container.scrollTop = container.scrollHeight;
 }
 
-const systemContext = `Bạn tên là "Mentor 12A1", chuyên gia tư vấn cực kỳ thân thiện. Tạo bởi Nhóm
+const systemContext = `Bạn tên là "Mentor 12A1", chuyên gia tư vấn cực kỳ thân thiện. Tạo bởi Nhóm 1 (Khánh Việt, Anh Thư, Hồng Oanh) lớp 12A1 THPT Lê Quý Đôn. Xưng "Mình", gọi người dùng là "Cậu" hoặc "Bạn". Trả lời ngắn gọn, có emoji. Dưới đây là câu hỏi: `;
+
+async function sendToGemini(userText, messageContainer) {
+    // ĐÃ ĐỔI TÊN MODEL THÀNH gemini-pro ĐỂ 100% HOẠT ĐỘNG
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${API_KEY}`;
+    
+    const loadingId = 'loading-' + Date.now();
+    const loadingMsg = document.createElement('div');
+    loadingMsg.classList.add('message', 'bot-message');
+    loadingMsg.id = loadingId;
+    loadingMsg.innerHTML = '<i>Đang rặn não suy nghĩ... 💭</i>';
+    messageContainer.appendChild(loadingMsg);
+    messageContainer.scrollTop = messageContainer.scrollHeight;
+
+    try {
+        if (API_KEY === 'DÁN_API_KEY_CỦA_BẠN_VÀO_ĐÂY' || API_KEY.trim() === '') {
+            throw new Error("CHƯA_NHẬP_KEY");
+        }
+
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                contents: [{ parts: [{ text: systemContext + userText }] }]
+            })
+        });
+
+        const data = await response.json();
+        document.getElementById(loadingId).remove(); 
+        
+        if (!response.ok) {
+            console.error("Lỗi chi tiết từ Google:", data);
+            appendMessage(`⚠️ Google báo lỗi: ${data.error.message}`, true, messageContainer);
+            return;
+        }
+
+        if (data.candidates && data.candidates.length > 0) {
+            appendMessage(data.candidates[0].content.parts[0].text, true, messageContainer);
+        } else {
+            appendMessage("Lỗi không lấy được dữ liệu ứng viên. Cậu hỏi lại nhé!", true, messageContainer);
+        }
+    } catch (error) {
+        document.getElementById(loadingId).remove();
+        console.error("Mã lỗi chi tiết:", error);
+        
+        if (error.message === "CHƯA_NHẬP_KEY") {
+            appendMessage("🚨 LỖI: Cậu chưa dán API Key vào file main.js kìa!", true, messageContainer);
+        } 
+        else if (error.name === 'TypeError' && error.message === 'Failed to fetch') {
+            appendMessage("🚨 LỖI BỊ CHẶN (Failed to fetch): Trình duyệt đang chặn kết nối! Tắt Adblock đi nhé cậu ơi!", true, messageContainer);
+        } 
+        else {
+            appendMessage(`🚨 LỖI HỆ THỐNG: ${error.message}. Cậu hãy F12 lên xem lỗi gì nha!`, true, messageContainer);
+        }
+    }
+}
+
+// Xử lý gửi tin cho Chat Nhúng
+const embedInput = document.getElementById('embed-chat-input');
+const embedSendBtn = document.getElementById('embed-send-btn');
+const embedMessages = document.getElementById('embed-chat-messages');
+
+function handleEmbedSend() {
+    const text = embedInput.value.trim();
+    if (!text) return;
+    appendMessage(text, false, embedMessages);
+    embedInput.value = '';
+    sendToGemini(text, embedMessages);
+}
+
+if(embedSendBtn && embedInput) {
+    embedSendBtn.addEventListener('click', handleEmbedSend);
+    embedInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleEmbedSend(); });
+}
+
+// Xử lý gửi tin cho Chat Nổi
+const floatingInput = document.getElementById('floating-chat-input');
+const floatingSendBtn = document.getElementById('floating-send-btn');
+const floatingMessages = document.getElementById('floating-chat-messages');
+
+function handleFloatingSend() {
+    const text = floatingInput.value.trim();
+    if (!text) return;
+    appendMessage(text, false, floatingMessages);
+    floatingInput.value = '';
+    sendToGemini(text, floatingMessages);
+}
+
+if(floatingSendBtn && floatingInput) {
+    floatingSendBtn.addEventListener('click', handleFloatingSend);
+    floatingInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleFloatingSend(); });
+}
+
+window.addEventListener('scroll', () => {
+    const backToTopBtn = document.getElementById('back-to-top');
+    if (window.scrollY > 500) { backToTopBtn.classList.add('show'); } 
+    else { backToTopBtn.classList.remove('show'); }
+    
+    const navbar = document.getElementById('navbar');
+    if (window.scrollY > 50) { navbar.classList.add('scrolled'); } 
+    else { navbar.classList.remove('scrolled'); }
+});
+
+document.getElementById('back-to-top').addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
