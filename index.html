@@ -27,6 +27,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
+<li><a href="#ai-counselor" class="nav-link">AI Tư Vấn</a></li>    
 <body>
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
@@ -578,6 +579,47 @@
             </div>
         </div>
     </section>
+
+<section id="ai-counselor" class="section section-light">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-label">🤖 AI Trợ Lý Đặc Quyền</span>
+            <h2 class="section-title">Góc Tư Vấn & Hướng Nghiệp</h2>
+            <p class="section-subtitle">Đang mông lung chọn ngành? Áp lực thi cử? Hãy để AI Mentor của Nhóm 1 12A1 gỡ rối tâm lý và định hướng tương lai cho cậu nhé!</p>
+        </div>
+        
+        <div class="embedded-chat-wrapper reveal delay-1">
+            <div class="embedded-chat-container">
+                <div class="chat-sidebar">
+                    <div class="ai-profile">
+                        <img src="https://cdn-icons-png.flaticon.com/512/8943/8943377.png" alt="AI Mentor">
+                        <h3>Mentor 12A1</h3>
+                        <p>Chuyên gia tâm lý & Tuyển sinh</p>
+                    </div>
+                    <div class="topic-list">
+                        <h4>Gợi ý cho cậu:</h4>
+                        <button class="topic-btn" onclick="document.getElementById('embed-chat-input').value='Tư vấn giúp mình các ngành hot khối A00 và A01 hiện nay?';">🎓 Ngành hot khối A/A01</button>
+                        <button class="topic-btn" onclick="document.getElementById('embed-chat-input').value='Làm sao để vượt qua áp lực và chống buồn ngủ khi ôn thi THPT Quốc Gia?';">🌱 Mẹo chống áp lực</button>
+                        <button class="topic-btn" onclick="document.getElementById('embed-chat-input').value='So sánh giúp mình ngành Công nghệ thông tin và Marketing?';">⚖️ So sánh ngành học</button>
+                    </div>
+                </div>
+                
+                <div class="chat-main">
+                    <div class="chatbox-messages embed-messages" id="embed-chat-messages">
+                        <div class="message bot-message">
+                            Chào cậu! 👋 Mình là AI Mentor được tạo ra bởi Khánh Việt, Anh Thư và Hồng Oanh (Nhóm 1). Mình ở đây để giúp cậu chọn trường, định hướng khối thi và xả stress. Cậu đang cần mình giúp gì nào?
+                        </div>
+                    </div>
+                    
+                    <div class="chatbox-input embed-input">
+                        <input type="text" id="embed-chat-input" placeholder="Nhập câu hỏi (VD: Mình thích máy tính thì học ngành gì?)..." autocomplete="off">
+                        <button id="embed-send-btn" title="Gửi câu hỏi"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>    
 
     <!-- Gallery Section -->
     <section id="gallery" class="gallery section section-light">
