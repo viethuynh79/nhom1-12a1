@@ -96,7 +96,7 @@ async function sendToGemini(userText, messageContainer) {
     messageContainer.scrollTop = messageContainer.scrollHeight;
 
     try {
-        if (API_KEY === 'AIzaSyCzWiNYlc-XaoTcss7f394fw4sFlkcDOWA' || API_KEY.trim() === '') {
+        if (API_KEY === 'DÁN_API_KEY_CỦA_BẠN_VÀO_ĐÂY' || API_KEY.trim() === '') {
             throw new Error("CHƯA_NHẬP_KEY");
         }
 
