@@ -33,7 +33,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // ============================================
 
 // 👇 DÁN API KEY CỦA CẬU VÀO ĐÂY 👇
-const API_KEY = 'AIzaSyCn7g59LvwsHL0lcO2me_ZsTWV52aoVpGE'; 
+const API_KEY = 'AIzaSyDgzrbvi9WE0-UkVDRMlTgH9HT3tbzjHzs'; 
 
 const PROMPT = "Bạn là Mentor 12A1, trợ lý của Nhóm 1 lớp 12A1 THPT Lê Quý Đôn. Xưng Mình, gọi Bạn/Cậu. Tư vấn hướng nghiệp thân thiện.";
 
