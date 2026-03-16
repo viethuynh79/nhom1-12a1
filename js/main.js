@@ -63,7 +63,7 @@ async function sendToDeepSeek(userText, msgBox) {
     const loadingDiv = document.createElement('div');
     loadingDiv.className = 'message bot-message';
     loadingDiv.id = loadingId;
-    loadingDiv.innerHTML = '<i>DeepSeek đang suy nghĩ... 🧠</i>';
+    loadingDiv.innerHTML = '<i>Tôi đang suy nghĩ... 🧠</i>';
     msgBox.appendChild(loadingDiv);
     msgBox.scrollTop = msgBox.scrollHeight;
 
