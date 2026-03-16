@@ -2,8 +2,8 @@
 // 1. HIỆU ỨNG TRƯỢT & CHẾ ĐỘ DARK MODE
 // ============================================
 
-// Khởi tạo hiệu ứng trượt (Scroll Reveal)
 document.addEventListener('DOMContentLoaded', () => {
+    // Scroll Reveal (Hiệu ứng hiện dần)
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if(themeIcon) themeIcon.className = 'fas fa-sun';
     }
 
+    // Xử lý nút bấm Dark Mode
     if (themeToggleBtn) {
         themeToggleBtn.addEventListener('click', () => {
             let theme = document.documentElement.getAttribute('data-theme');
