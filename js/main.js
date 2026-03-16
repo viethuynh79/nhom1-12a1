@@ -3,10 +3,7 @@
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
     const revealElements = document.querySelectorAll('.reveal');
-    const revealOptions = {
-        threshold: 0.15, 
-        rootMargin: "0px 0px -50px 0px" 
-    };
+    const revealOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
 
     const revealOnScroll = new IntersectionObserver(function(entries, observer) {
         entries.forEach(entry => {
@@ -33,10 +30,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         if (targetElement) {
             const headerHeight = document.querySelector('.navbar').offsetHeight;
             const elementPosition = targetElement.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerHeight - 20;
-
-            window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-            
+            window.scrollTo({ top: elementPosition + window.pageYOffset - headerHeight - 20, behavior: "smooth" });
             const navMenu = document.getElementById('nav-menu');
             if(navMenu) navMenu.classList.remove('active');
         }
@@ -44,20 +38,17 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-if(mobileMenuBtn) {
-    mobileMenuBtn.addEventListener('click', () => {
-        document.getElementById('nav-menu').classList.toggle('active');
-    });
-}
+if(mobileMenuBtn) mobileMenuBtn.addEventListener('click', () => document.getElementById('nav-menu').classList.toggle('active'));
 
 // ============================================
-// CHỨC NĂNG 3: AI MENTOR CHATBOT (GEMINI PRO)
+// CHỨC NĂNG 3: "NÃO BỘ" AI (PHIÊN BẢN TỰ ĐỘNG DÒ TÌM MODEL CHUẨN)
 // ============================================
 
 // 👇 DÁN MÃ API KEY CỦA BẠN VÀO GIỮA 2 DẤU NHÁY ĐƠN 👇
-const API_KEY = 'AIzaSyCzWiNYlc-XaoTcss7f394fw4sFlkcDOWA'; 
+const API_KEY = 'AIzaSyCn7g59LvwsHL0lcO2me_ZsTWV52aoVpGE'; 
 
-// Logic Ẩn/Hiện Khung Chat Nổi
+let activeGeminiModel = null; // Biến lưu trữ Model khả dụng nhất
+
 const aiAssistantBtn = document.getElementById('ai-assistant-btn');
 const chatboxContainer = document.getElementById('chatbox-container');
 const closeChatBtn = document.getElementById('close-chat-btn');
@@ -67,14 +58,12 @@ if (aiAssistantBtn && chatboxContainer && closeChatBtn) {
     closeChatBtn.addEventListener('click', () => chatboxContainer.classList.remove('active'));
 }
 
-// Hàm format và in tin nhắn ra màn hình
 function appendMessage(text, isBot, container) {
     if(!container) return;
     const msgDiv = document.createElement('div');
     msgDiv.classList.add('message');
     msgDiv.classList.add(isBot ? 'bot-message' : 'user-message');
     
-    // Xử lý in đậm, in nghiêng và xuống dòng
     let formattedText = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
     formattedText = formattedText.replace(/\*(.*?)\*/g, '<em>$1</em>');
     formattedText = formattedText.replace(/\n/g, '<br>');
@@ -84,19 +73,41 @@ function appendMessage(text, isBot, container) {
     container.scrollTop = container.scrollHeight;
 }
 
-// Cài đặt "não bộ"
-const systemContext = `Bạn tên là "Mentor 12A1", chuyên gia tư vấn tâm lý, học tập. Tạo bởi Nhóm 1 (Khánh Việt, Anh Thư, Hồng Oanh) lớp 12A1 THPT Lê Quý Đôn. Xưng "Mình", gọi người dùng là "Cậu" hoặc "Bạn". Trả lời ngắn gọn, súc tích, có emoji. Dưới đây là câu hỏi: `;
+const systemContext = `Bạn tên là "Mentor 12A1", chuyên gia tư vấn học tập. Tạo bởi Nhóm 1 (Khánh Việt, Anh Thư, Hồng Oanh) lớp 12A1 THPT Lê Quý Đôn. Xưng "Mình", gọi người dùng là "Cậu" hoặc "Bạn". Trả lời ngắn gọn, có emoji. Dưới đây là câu hỏi: `;
 
-// Hàm gọi API
+// THUẬT TOÁN TỰ ĐỘNG TÌM MODEL PHÙ HỢP VỚI API KEY
+async function initGeminiModel(messageContainer) {
+    if (activeGeminiModel) return activeGeminiModel;
+    try {
+        const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${API_KEY}`);
+        const data = await res.json();
+        
+        if (!res.ok) throw new Error(data.error.message);
+
+        // Lọc ra các Model hỗ trợ Chat (generateContent)
+        const validModels = data.models.filter(m => m.supportedGenerationMethods && m.supportedGenerationMethods.includes('generateContent'));
+        
+        if (validModels.length === 0) throw new Error("API Key này không có model nào hỗ trợ chat.");
+
+        // Ưu tiên chọn các Model mới nhất, nếu không có thì lấy cái đầu tiên khả dụng
+        let chosen = validModels.find(m => m.name.includes('gemini-1.5-flash'));
+        if (!chosen) chosen = validModels.find(m => m.name.includes('gemini-1.5-pro'));
+        if (!chosen) chosen = validModels.find(m => m.name.includes('gemini-pro'));
+        if (!chosen) chosen = validModels[0]; 
+
+        activeGeminiModel = chosen.name; // Sẽ ra chuỗi dạng "models/gemini-xxx"
+        return activeGeminiModel;
+    } catch (error) {
+        throw new Error("Lỗi dò Model: " + error.message);
+    }
+}
+
 async function sendToGemini(userText, messageContainer) {
-    // Đã dùng gemini-pro để đảm bảo 100% không bị lỗi version v1beta
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${API_KEY}`;
-    
     const loadingId = 'loading-' + Date.now();
     const loadingMsg = document.createElement('div');
     loadingMsg.classList.add('message', 'bot-message');
     loadingMsg.id = loadingId;
-    loadingMsg.innerHTML = '<i>Đang suy nghĩ... 💭</i>';
+    loadingMsg.innerHTML = '<i>Đang kết nối hệ thống... 💭</i>';
     messageContainer.appendChild(loadingMsg);
     messageContainer.scrollTop = messageContainer.scrollHeight;
 
@@ -104,6 +115,10 @@ async function sendToGemini(userText, messageContainer) {
         if (API_KEY === 'DÁN_API_KEY_CỦA_BẠN_VÀO_ĐÂY' || API_KEY.trim() === '') {
             throw new Error("CHƯA_NHẬP_KEY");
         }
+
+        // Tự động tìm tên Model chuẩn trước khi gửi
+        const modelName = await initGeminiModel(messageContainer);
+        const url = `https://generativelanguage.googleapis.com/v1beta/${modelName}:generateContent?key=${API_KEY}`;
 
         const response = await fetch(url, {
             method: 'POST',
@@ -114,12 +129,9 @@ async function sendToGemini(userText, messageContainer) {
         });
 
         const data = await response.json();
-        
-        const loadingElement = document.getElementById(loadingId);
-        if(loadingElement) loadingElement.remove();
+        document.getElementById(loadingId).remove(); 
         
         if (!response.ok) {
-            console.error("Lỗi API Google:", data);
             appendMessage(`⚠️ Lỗi từ Google: ${data.error ? data.error.message : 'Lỗi không xác định'}`, true, messageContainer);
             return;
         }
@@ -127,27 +139,23 @@ async function sendToGemini(userText, messageContainer) {
         if (data.candidates && data.candidates.length > 0) {
             appendMessage(data.candidates[0].content.parts[0].text, true, messageContainer);
         } else {
-            appendMessage("Lỗi xử lý câu trả lời. Cậu hỏi lại nhé!", true, messageContainer);
+            appendMessage("Xin lỗi, mình không phân tích được dữ liệu này. Cậu thử lại nhé!", true, messageContainer);
         }
     } catch (error) {
-        const loadingElement = document.getElementById(loadingId);
-        if(loadingElement) loadingElement.remove();
-        
-        console.error("Mã lỗi chi tiết:", error);
+        const loadingEl = document.getElementById(loadingId);
+        if(loadingEl) loadingEl.remove();
         
         if (error.message === "CHƯA_NHẬP_KEY") {
-            appendMessage("🚨 LỖI: Cậu chưa dán API Key vào file main.js kìa!", true, messageContainer);
-        } else if (error.name === 'TypeError' && error.message.includes('Failed to fetch')) {
-            appendMessage("🚨 LỖI MẠNG: Không thể kết nối. Hãy tắt phần mềm chặn quảng cáo (Adblock) đi nhé!", true, messageContainer);
+            appendMessage("🚨 LỖI: Cậu chưa dán API Key vào file main.js!", true, messageContainer);
+        } else if (error.message.includes('Failed to fetch')) {
+            appendMessage("🚨 LỖI MẠNG: Không thể kết nối. Hãy tắt phần mềm chặn quảng cáo đi nhé!", true, messageContainer);
         } else {
-            appendMessage(`🚨 LỖI HỆ THỐNG: ${error.message}`, true, messageContainer);
+            appendMessage(`🚨 ${error.message}`, true, messageContainer);
         }
     }
 }
 
-// ============================================
-// XỬ LÝ KHUNG CHAT NHÚNG (EMBEDDED)
-// ============================================
+// Xử lý gửi tin cho Chat Nhúng
 const embedInput = document.getElementById('embed-chat-input');
 const embedSendBtn = document.getElementById('embed-send-btn');
 const embedMessages = document.getElementById('embed-chat-messages');
@@ -166,9 +174,7 @@ if(embedSendBtn && embedInput) {
     embedInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleEmbedSend(); });
 }
 
-// ============================================
-// XỬ LÝ KHUNG CHAT NỔI (FLOATING)
-// ============================================
+// Xử lý gửi tin cho Chat Nổi
 const floatingInput = document.getElementById('floating-chat-input');
 const floatingSendBtn = document.getElementById('floating-send-btn');
 const floatingMessages = document.getElementById('floating-chat-messages');
@@ -187,16 +193,13 @@ if(floatingSendBtn && floatingInput) {
     floatingInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleFloatingSend(); });
 }
 
-// ============================================
-// BACK TO TOP & NAVBAR BACKGROUND
-// ============================================
+// BACK TO TOP
 window.addEventListener('scroll', () => {
     const backToTopBtn = document.getElementById('back-to-top');
     if (backToTopBtn) {
         if (window.scrollY > 500) backToTopBtn.classList.add('show');
         else backToTopBtn.classList.remove('show');
     }
-    
     const navbar = document.getElementById('navbar');
     if (navbar) {
         if (window.scrollY > 50) navbar.classList.add('scrolled');
@@ -205,8 +208,4 @@ window.addEventListener('scroll', () => {
 });
 
 const backToTopBtn = document.getElementById('back-to-top');
-if(backToTopBtn) {
-    backToTopBtn.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-}
+if(backToTopBtn) backToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
