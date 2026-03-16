@@ -3,7 +3,7 @@
    ============================================ */
 
 :root {
-    /* Đổi sang Tone màu Công nghệ & Hài hòa hơn (Indigo - Sky Blue) */
+    /* Tone màu Công nghệ & Hài hòa hơn (Indigo - Sky Blue) */
     --primary-color: #4F46E5;      /* Xanh Tím Indigo */
     --secondary-color: #0EA5E9;    /* Xanh Da Trời */
     --accent-color: #10B981;       /* Xanh Ngọc (Emerald) làm điểm nhấn */
@@ -15,7 +15,7 @@
     --bg-light: #F8FAFC;
     --bg-white: #ffffff;
     
-    /* Cập nhật lại các dải màu Gradient cho mượt mà */
+    /* Dải màu Gradient */
     --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     --gradient-accent: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color) 100%);
     --gradient-hero: linear-gradient(135deg, #312E81 0%, #4F46E5 50%, #0EA5E9 100%);
@@ -121,7 +121,7 @@ img {
     color: var(--primary-color);
     margin-bottom: 1rem;
     padding: 0.5rem 1.5rem;
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.1) 0%, rgba(14, 165, 233, 0.1) 100%);
     border-radius: 50px;
 }
 
@@ -140,19 +140,19 @@ img {
     font-weight: 900;
     background: linear-gradient(
         90deg,
-        #667eea 0%,
-        #764ba2 20%,
-        #f093fb 40%,
-        #4facfe 60%,
-        #00f2fe 80%,
-        #667eea 100%
+        var(--primary-color) 0%,
+        var(--accent-2) 20%,
+        var(--accent-3) 40%,
+        var(--secondary-color) 60%,
+        var(--accent-color) 80%,
+        var(--primary-color) 100%
     );
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     animation: gradientShift 3s linear infinite;
-    filter: drop-shadow(0 10px 20px rgba(102, 126, 234, 0.3));
+    filter: drop-shadow(0 10px 20px rgba(79, 70, 229, 0.3));
     margin-bottom: 1rem;
 }
 
@@ -275,7 +275,6 @@ img {
     font-size: 0.85rem;
 }
 
-/* Hiệu ứng nhấp nháy cho icon AI */
 @keyframes aiPulse {
     0% { transform: scale(1); filter: drop-shadow(0 0 2px rgba(255,255,255,0.4)); }
     50% { transform: scale(1.2); filter: drop-shadow(0 0 8px rgba(255,255,255,0.8)); }
@@ -376,18 +375,10 @@ img {
 }
 
 @keyframes float {
-    0%, 100% { 
-        transform: translate(0, 0) scale(1) rotate(0deg); 
-    }
-    25% { 
-        transform: translate(30px, -30px) scale(1.1) rotate(90deg); 
-    }
-    50% { 
-        transform: translate(-20px, 20px) scale(0.9) rotate(180deg); 
-    }
-    75% { 
-        transform: translate(40px, 10px) scale(1.05) rotate(270deg); 
-    }
+    0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+    25% { transform: translate(30px, -30px) scale(1.1) rotate(90deg); }
+    50% { transform: translate(-20px, 20px) scale(0.9) rotate(180deg); }
+    75% { transform: translate(40px, 10px) scale(1.05) rotate(270deg); }
 }
 
 .hero-container {
@@ -425,11 +416,11 @@ img {
     padding-top: 0.25em;
     padding-bottom: 0.15em;
     margin-bottom: 1rem;
-    background: linear-gradient(135deg, #764ba2 0%, #667eea 50%, #f093fb 100%);
+    background: linear-gradient(135deg, var(--bg-white) 0%, var(--bg-light) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    filter: drop-shadow(0 5px 15px rgba(118, 75, 162, 0.3));
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
 }
 
 .group-badge {
@@ -568,12 +559,8 @@ img[src=""]:not([alt]),
 }
 
 @keyframes pulseGlow {
-    0%, 100% {
-        box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
-    }
-    50% {
-        box-shadow: 0 0 40px rgba(102, 126, 234, 0.8);
-    }
+    0%, 100% { box-shadow: 0 0 20px rgba(79, 70, 229, 0.5); }
+    50% { box-shadow: 0 0 40px rgba(79, 70, 229, 0.8); }
 }
 
 img[src=""]::after,
@@ -593,32 +580,6 @@ img:not([src])::after,
     padding: 1rem;
     background: rgba(0, 0, 0, 0.3);
     border-radius: 8px;
-}
-
-/* Specific placeholder messages */
-.school-image[src=""]::after {
-    content: '📸 Thêm ảnh trường\A(1200x800px)';
-    white-space: pre;
-}
-
-.class-image[src=""]::after {
-    content: '📸 Thêm ảnh lớp\A(1000x750px)';
-    white-space: pre;
-}
-
-.teacher-image[src=""]::after {
-    content: '📸 Thêm ảnh giáo viên\A(400x500px)';
-    white-space: pre;
-}
-
-.member-image[src=""]::after {
-    content: '📸 Thêm ảnh thành viên\A(500x500px)';
-    white-space: pre;
-}
-
-.gallery-image[src=""]::after {
-    content: '📸 Thêm ảnh\A(800x600px)';
-    white-space: pre;
 }
 
 /* ============================================
@@ -647,9 +608,6 @@ img:not([src])::after,
     aspect-ratio: 3 / 2;
     object-fit: cover;
     display: block;
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-    -ms-interpolation-mode: bicubic;
 }
 
 .school-image:hover {
@@ -708,10 +666,6 @@ img:not([src])::after,
     margin-bottom: 1rem;
 }
 
-.school-description h3:first-child {
-    margin-top: 0;
-}
-
 .school-description p {
     color: var(--text-light);
     line-height: 1.8;
@@ -755,11 +709,6 @@ img:not([src])::after,
     margin-top: 2rem;
 }
 
-.btn-large {
-    padding: 1.25rem 3rem;
-    font-size: 1.2rem;
-}
-
 /* ============================================
    CLASS SECTION
    ============================================ */
@@ -784,9 +733,6 @@ img:not([src])::after,
     aspect-ratio: 4 / 3;
     object-fit: cover;
     display: block;
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-    -ms-interpolation-mode: bicubic;
 }
 
 .class-info-cards {
@@ -870,9 +816,6 @@ img:not([src])::after,
     aspect-ratio: 4 / 5;
     object-fit: cover;
     display: block;
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-    -ms-interpolation-mode: bicubic;
 }
 
 .teacher-info {
@@ -992,9 +935,6 @@ img:not([src])::after,
     object-fit: cover;
     object-position: center top;
     transition: transform 0.5s ease;
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-    -ms-interpolation-mode: bicubic;
 }
 
 .member-card:hover .member-image {
@@ -1042,12 +982,12 @@ img:not([src])::after,
 }
 
 .badge-member {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-2) 100%);
     color: white;
 }
 
 .badge-male {
-    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-3) 100%);
     color: white;
 }
 
@@ -1132,21 +1072,10 @@ img:not([src])::after,
     height: 100px;
 }
 
-.social-link.facebook {
-    background: linear-gradient(135deg, #3b5998 0%, #2d4373 100%);
-}
-
-.social-link.instagram {
-    background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-}
-
-.social-link.youtube {
-    background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
-}
-
-.social-link.email {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-}
+.social-link.facebook { background: linear-gradient(135deg, #3b5998 0%, #2d4373 100%); }
+.social-link.instagram { background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+.social-link.youtube { background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%); }
+.social-link.email { background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-2) 100%); }
 
 .social-link:hover {
     transform: scale(1.2) rotate(5deg) translateY(-5px);
@@ -1231,60 +1160,12 @@ img:not([src])::after,
     object-fit: cover;
 }
 
-.gallery-upload-section {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 3rem;
-    background: white;
-    border-radius: 16px;
-    box-shadow: var(--shadow-md);
-    text-align: center;
-}
-
-.gallery-upload-section h3 {
-    font-size: 2rem;
-    color: var(--primary-color);
-    margin-bottom: 1.5rem;
-}
-
-.gallery-upload-section p {
-    color: var(--text-light);
-    line-height: 1.8;
-    margin-bottom: 2rem;
-}
-
-.upload-help {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.help-item {
-    padding: 1.5rem;
-    background: var(--bg-light);
-    border-radius: 12px;
-    text-align: center;
-}
-
-.help-icon {
-    font-size: 2rem;
-    display: block;
-    margin-bottom: 1rem;
-}
-
-.help-item p {
-    font-size: 0.95rem;
-    color: var(--text-dark);
-    margin: 0;
-}
-
 /* ============================================
    FOOTER
    ============================================ */
 
 .footer {
-    background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+    background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
     color: white;
     padding: 4rem 0 2rem;
 }
@@ -1328,11 +1209,6 @@ img:not([src])::after,
 .footer-links a:hover {
     color: var(--accent-color);
     transform: translateX(5px);
-}
-
-.footer-social {
-    display: flex;
-    gap: 1rem;
 }
 
 .footer-bottom {
@@ -1380,41 +1256,228 @@ img:not([src])::after,
 }
 
 /* ============================================
+   CHATBOX AI STYLES - LIQUID GLASS & iOS ANIMATION
+   ============================================ */
+.chatbox-container {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 360px;
+    height: 550px;
+    max-width: calc(100vw - 40px);
+    max-height: calc(100vh - 100px);
+    
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 28px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+    
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 1000;
+    
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(40px) scale(0.9);
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.chatbox-container.active {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+}
+
+.chatbox-header {
+    background: rgba(79, 70, 229, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: white;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    flex-shrink: 0;
+    z-index: 2;
+}
+
+.bot-logo {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 4px;
+    object-fit: contain;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.bot-info {
+    flex: 1;
+}
+
+.bot-info h3 { 
+    margin: 0; 
+    font-size: 1.15rem; 
+    color: white; 
+    font-family: var(--font-display);
+    letter-spacing: 0.5px;
+}
+.bot-info p { 
+    margin: 0; 
+    font-size: 0.8rem; 
+    color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 500;
+}
+
+.close-chat-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition-normal);
+}
+
+.close-chat-btn:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: rotate(90deg) scale(1.1);
+}
+
+.chatbox-messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0,0,0,0.1) transparent;
+}
+
+.chatbox-messages::-webkit-scrollbar {
+    width: 5px;
+}
+.chatbox-messages::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.15);
+    border-radius: 10px;
+}
+
+.message {
+    max-width: 85%;
+    padding: 12px 16px;
+    border-radius: 20px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    word-wrap: break-word;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    animation: messageSlideIn 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    transform-origin: bottom;
+}
+
+@keyframes messageSlideIn {
+    from { opacity: 0; transform: translateY(15px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.bot-message {
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--text-dark);
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+}
+
+.user-message {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+}
+
+.chatbox-input {
+    display: flex;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.4);
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    gap: 12px;
+    align-items: center;
+    flex-shrink: 0;
+    z-index: 2;
+    backdrop-filter: blur(10px);
+}
+
+.chatbox-input input {
+    flex: 1;
+    padding: 14px 20px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 24px;
+    outline: none;
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: var(--transition-normal);
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.chatbox-input input:focus { 
+    background: white;
+    border-color: var(--primary-color); 
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+}
+
+.chatbox-input button {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.35);
+    flex-shrink: 0;
+}
+
+.chatbox-input button:hover { 
+    transform: scale(1.1) translateY(-2px); 
+    box-shadow: 0 6px 16px rgba(79, 70, 229, 0.5);
+}
+.chatbox-input button:active {
+    transform: scale(0.95);
+}
+
+/* ============================================
    RESPONSIVE DESIGN
    ============================================ */
 
 @media (max-width: 1024px) {
-    .class-info-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .teacher-card {
-        grid-template-columns: 1fr;
-    }
-    
-    .teacher-image-container {
-        max-width: 400px;
-        margin: 0 auto;
-    }
-    
-    .teacher-image {
-        aspect-ratio: 4 / 3;
-        max-height: 350px;
-    }
+    .class-info-grid { grid-template-columns: 1fr; }
+    .teacher-card { grid-template-columns: 1fr; }
+    .teacher-image-container { max-width: 400px; margin: 0 auto; }
+    .teacher-image { aspect-ratio: 4 / 3; max-height: 350px; }
 }
 
 @media (max-width: 768px) {
-    html {
-        font-size: 14px;
-    }
-    
-    .container {
-        padding: 0 1.5rem;
-    }
-    
-    .section {
-        padding: 60px 0;
-    }
+    html { font-size: 14px; }
+    .container { padding: 0 1.5rem; }
+    .section { padding: 60px 0; }
     
     .nav-menu {
         position: fixed;
@@ -1430,160 +1493,58 @@ img:not([src])::after,
         transition: left var(--transition-normal);
     }
     
-    .nav-menu.active {
-        left: 0;
-    }
+    .nav-menu.active { left: 0; }
+    .mobile-menu-toggle { display: block; }
     
-    .mobile-menu-toggle {
-        display: block;
-    }
+    .hero-title-group { font-size: clamp(3rem, 12vw, 5rem); }
+    .hero-title-class { font-size: clamp(2rem, 8vw, 3rem); }
+    .hero-buttons { flex-direction: column; align-items: center; }
     
-    .hero-title-group {
-        font-size: clamp(3rem, 12vw, 5rem);
-    }
+    .school-info { grid-template-columns: 1fr; }
+    .school-stats { grid-template-columns: repeat(2, 1fr); }
+    .members-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
     
-    .hero-title-class {
-        font-size: clamp(2rem, 8vw, 3rem);
-    }
-    
-    .hero-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .school-info {
-        grid-template-columns: 1fr;
-    }
-    
-    .school-stats {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .members-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .gallery-grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1.5rem;
-    }
-    
-    .upload-help {
-        grid-template-columns: 1fr;
-    }
-    
-    .footer-content {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
+    .footer-content { grid-template-columns: 1fr; gap: 2rem; }
 }
 
 @media (max-width: 480px) {
-    .school-stats {
-        grid-template-columns: 1fr;
-    }
-    
-    .stat-number {
-        font-size: 2.5rem;
-    }
-    
-    .member-card {
-        height: 550px;
-    }
-    
-    .member-image-container {
-        height: 350px;
-    }
-    
-    .strengths-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .gallery-grid {
-        grid-template-columns: 1fr;
-    }
+    .school-stats { grid-template-columns: 1fr; }
+    .stat-number { font-size: 2.5rem; }
+    .member-card { height: 550px; }
+    .member-image-container { height: 350px; }
+    .strengths-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: 1fr; }
 }
 
 /* ============================================
-   UTILITY CLASSES
+   UTILITY CLASSES & ANIMATIONS
    ============================================ */
 
-.text-center {
-    text-align: center;
-}
+.text-center { text-align: center; }
+.mt-1 { margin-top: 1rem; } .mt-2 { margin-top: 2rem; } .mt-3 { margin-top: 3rem; } .mt-4 { margin-top: 4rem; }
+.mb-1 { margin-bottom: 1rem; } .mb-2 { margin-bottom: 2rem; } .mb-3 { margin-bottom: 3rem; } .mb-4 { margin-bottom: 4rem; }
 
-.text-gradient {
-    background: var(--gradient-accent);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.mt-1 { margin-top: 1rem; }
-.mt-2 { margin-top: 2rem; }
-.mt-3 { margin-top: 3rem; }
-.mt-4 { margin-top: 4rem; }
-
-.mb-1 { margin-bottom: 1rem; }
-.mb-2 { margin-bottom: 2rem; }
-.mb-3 { margin-bottom: 3rem; }
-.mb-4 { margin-bottom: 4rem; }
-
-/* ============================================
-   ANIMATIONS & TRANSITIONS
-   ============================================ */
-
-.fade-in {
-    animation: fadeIn 0.6s ease-in;
-}
-
+.fade-in { animation: fadeIn 0.6s ease-in; }
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-.slide-in-left {
-    animation: slideInLeft 0.6s ease-out;
-}
-
+.slide-in-left { animation: slideInLeft 0.6s ease-out; }
 @keyframes slideInLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+    from { opacity: 0; transform: translateX(-50px); }
+    to { opacity: 1; transform: translateX(0); }
 }
 
-.slide-in-right {
-    animation: slideInRight 0.6s ease-out;
-}
-
+.slide-in-right { animation: slideInRight 0.6s ease-out; }
 @keyframes slideInRight {
-    from {
-        opacity: 0;
-        transform: translateX(50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+    from { opacity: 0; transform: translateX(50px); }
+    to { opacity: 1; transform: translateX(0); }
 }
 
-/* GPU Acceleration for better performance */
-.member-card,
-.social-link,
-.btn,
-.gallery-item,
-.info-card,
-.stat-card {
+/* GPU Acceleration */
+.member-card, .social-link, .btn, .gallery-item, .info-card, .stat-card {
     will-change: transform;
     transform: translateZ(0);
     backface-visibility: hidden;
