@@ -28,13 +28,14 @@
                 <li><a href="#group" class="nav-link">Nhóm</a></li>
                 <li><a href="#ai-counselor" class="nav-link">AI Tư Vấn</a></li>
                 <li><a href="#gallery" class="nav-link">Thư Viện</a></li>
+                <li>
+                    <button id="theme-toggle" class="theme-toggle-btn" title="Bật/Tắt chế độ tối">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </li>
             </ul>
             
             <div class="nav-actions">
-                <button class="ai-assistant-btn" id="ai-assistant-btn" title="Trợ lý AI Hỗ trợ">
-                    <i class="fas fa-sparkles"></i>
-                    <span class="ai-text">AI Chat</span>
-                </button>
                 <button class="mobile-menu-toggle" id="mobile-menu-btn">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -53,7 +54,7 @@
         
         <div class="container hero-container">
             <div class="hero-content">
-                <div class="school-badge reveal">🏫 THPT Lê Quý Đôn</div>
+                <div class="school-badge reveal floating-element">🏫 THPT Lê Quý Đôn</div>
                 <h2 class="hero-title-class reveal delay-1">Lớp 12A1</h2>
                 
                 <div class="group-badge reveal delay-2">
@@ -73,11 +74,6 @@
                     </a>
                 </div>
             </div>
-        </div>
-        
-        <div class="scroll-indicator">
-            <p>Cuộn xuống</p>
-            <i class="fas fa-chevron-down"></i>
         </div>
     </header>
 
@@ -369,7 +365,7 @@
         
         <div class="chatbox-messages" id="floating-chat-messages">
             <div class="message bot-message">
-                Xin chào! Bạn cần tìm thông tin gì trên trang web này? Mình sẽ hướng dẫn ngay!
+                Xin chào! Bạn cần tìm thông tin gì hay cần tâm sự chuyện trường lớp không? Hãy hỏi mình nhé!
             </div>
         </div>
         
@@ -379,8 +375,8 @@
         </div>
     </div>
 
-    <button class="back-to-top" id="back-to-top" title="Về đầu trang">
-        <i class="fas fa-arrow-up"></i>
+    <button class="ai-trigger-btn" id="ai-trigger-btn" title="Hỏi AI Tư Vấn">
+        <i class="fas fa-robot"></i>
     </button>
 
     <script src="js/main.js"></script>
