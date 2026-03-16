@@ -10,17 +10,29 @@
     --accent-3: #F43F5E;           
     
     /* Giao diện LIGHT MODE (Sáng) mặc định */
-    --bg-main: #F8FAFC;         /* Nền body */
-    --bg-card: #FFFFFF;         /* Nền các thẻ, khung chat */
-    --bg-alt: #F1F5F9;          /* Nền các section phụ */
-    --text-main: #1E293B;       /* Chữ chính (đen) */
-    --text-muted: #64748B;      /* Chữ phụ (xám) */
+    --bg-main: #F8FAFC;         
+    --bg-card: #FFFFFF;         
+    --bg-alt: #F1F5F9;          
+    --text-main: #1E293B;       
+    --text-muted: #64748B;      
     --nav-bg: rgba(255, 255, 255, 0.9);
     --border-color: rgba(0, 0, 0, 0.08);
     
+    /* Tự động đổi màu Hero (Phần đầu) ở Light Mode */
+    --hero-bg: linear-gradient(135deg, #F8FAFC 0%, #EEF2FF 50%, #E0F2FE 100%);
+    --hero-text: #1E293B;
+    --hero-text-muted: #475569;
+    --hero-badge-bg: rgba(79, 70, 229, 0.1);
+    --hero-btn-sec-bg: rgba(0, 0, 0, 0.05);
+    --hero-btn-sec-border: rgba(0, 0, 0, 0.15);
+
+    /* Tự động đổi màu Footer ở Light Mode */
+    --footer-bg: #F1F5F9;
+    --footer-text: #1E293B;
+    --footer-text-muted: #64748B;
+    
     --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     --gradient-accent: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color) 100%);
-    --gradient-hero: linear-gradient(135deg, #312E81 0%, #4F46E5 50%, #0EA5E9 100%);
     
     --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-display: 'Poppins', 'Inter', sans-serif;
@@ -39,13 +51,26 @@
 
 /* Giao diện DARK MODE (Tối) */
 :root[data-theme="dark"] {
-    --bg-main: #0F172A;         /* Nền body tối */
-    --bg-card: #1E293B;         /* Nền các thẻ tối */
-    --bg-alt: #162032;          /* Nền section phụ tối */
-    --text-main: #F8FAFC;       /* Chữ chính (trắng) */
-    --text-muted: #94A3B8;      /* Chữ phụ (xám sáng) */
+    --bg-main: #0F172A;         
+    --bg-card: #1E293B;         
+    --bg-alt: #162032;          
+    --text-main: #F8FAFC;       
+    --text-muted: #94A3B8;      
     --nav-bg: rgba(15, 23, 42, 0.9);
     --border-color: rgba(255, 255, 255, 0.1);
+
+    /* Màu Hero (Phần đầu) khi ở Dark Mode */
+    --hero-bg: linear-gradient(135deg, #0F172A 0%, #1E1B4B 50%, #082F49 100%);
+    --hero-text: #FFFFFF;
+    --hero-text-muted: #CBD5E1;
+    --hero-badge-bg: rgba(255, 255, 255, 0.1);
+    --hero-btn-sec-bg: rgba(255, 255, 255, 0.1);
+    --hero-btn-sec-border: rgba(255, 255, 255, 0.25);
+
+    /* Màu Footer khi ở Dark Mode */
+    --footer-bg: linear-gradient(135deg, #0F172A, #020617);
+    --footer-text: #FFFFFF;
+    --footer-text-muted: rgba(255, 255, 255, 0.6);
     
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.5);
     --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.6);
@@ -59,8 +84,8 @@
 
 html { 
     scroll-behavior: smooth; 
-    zoom: 80%; /* Yêu cầu: Zoom 80% mặc định */
-    scroll-padding-top: 100px; /* Bù trừ khoảng cách khi click Menu để không bị đè */
+    zoom: 80%; 
+    scroll-padding-top: 100px; 
 }
 
 body { 
@@ -130,42 +155,41 @@ img { max-width: 100%; height: auto; display: block; }
 .nav-link::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%) scaleX(0); width: 100%; height: 2px; background: var(--gradient-primary); transition: transform var(--transition-normal); border-radius: 2px; }
 .nav-link:hover::after, .nav-link.active::after { transform: translateX(-50%) scaleX(1); }
 
-/* Nút Dark Mode */
 .theme-toggle-btn { background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-main); font-size: 1.2rem; cursor: pointer; padding: 10px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: var(--transition-fast); }
 .theme-toggle-btn:hover { color: var(--primary-color); transform: rotate(-20deg) scale(1.1); box-shadow: var(--shadow-sm); }
 .mobile-menu-toggle { display: none; background: none; border: none; font-size: 1.5rem; color: var(--primary-color); cursor: pointer; }
 
 /* ============================================
-   HERO SECTION
+   HERO SECTION (ĐÃ FIX LỖI ĐEN Ở LIGHT MODE)
    ============================================ */
-.hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; background: var(--gradient-hero); padding-top: 80px; }
+.hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; background: var(--hero-bg); padding-top: 80px; transition: background var(--transition-normal); }
 .background-shapes { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: 0; }
-.shape { position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.3; animation: floatShape 20s infinite ease-in-out; }
+.shape { position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.2; animation: floatShape 20s infinite ease-in-out; }
 .shape-1 { width: 400px; height: 400px; background: var(--primary-color); top: 10%; left: 10%; animation-delay: 0s; }
 .shape-2 { width: 300px; height: 300px; background: var(--accent-color); top: 60%; right: 10%; animation-delay: 2s; }
 .shape-3 { width: 350px; height: 350px; background: var(--secondary-color); bottom: 10%; left: 20%; animation-delay: 4s; }
 @keyframes floatShape { 0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); } 25% { transform: translate(30px, -30px) scale(1.1) rotate(90deg); } 50% { transform: translate(-20px, 20px) scale(0.9) rotate(180deg); } 75% { transform: translate(40px, 10px) scale(1.05) rotate(270deg); } }
 .hero-container { position: relative; z-index: 1; }
-.hero-content { text-align: center; color: white; }
-.school-badge { display: inline-block; font-size: 1.1rem; font-weight: 600; padding: 0.75rem 2rem; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border-radius: 50px; margin-bottom: 2rem; letter-spacing: 0.5px; color: white; }
-.hero-title-class { font-size: clamp(3rem, 6vw, 4rem); font-weight: 800; line-height: 1.2; margin-bottom: 1rem; color: white;}
+.hero-content { text-align: center; color: var(--hero-text); }
+.school-badge { display: inline-block; font-size: 1.1rem; font-weight: 600; padding: 0.75rem 2rem; background: var(--hero-badge-bg); backdrop-filter: blur(10px); border-radius: 50px; margin-bottom: 2rem; letter-spacing: 0.5px; color: var(--hero-text); border: 1px solid var(--hero-btn-sec-border); }
+.hero-title-class { font-size: clamp(3rem, 6vw, 4rem); font-weight: 800; line-height: 1.2; margin-bottom: 1rem; color: var(--hero-text); transition: color var(--transition-normal); }
 .group-badge { display: flex; align-items: center; justify-content: center; gap: 1rem; margin: 2rem 0; }
 .badge-star { font-size: 2rem; animation: rotateStar 3s linear infinite; }
 @keyframes rotateStar { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-.hero-title-group { font-size: clamp(5rem, 10vw, 8rem); font-weight: 900; line-height: 1.1; color: white; }
-.hero-subtitle { font-size: 1.4rem; margin-bottom: 3rem; opacity: 0.95; color: white; font-weight: 500;}
+.hero-title-group { font-size: clamp(5rem, 10vw, 8rem); font-weight: 900; line-height: 1.1; color: var(--hero-text); transition: color var(--transition-normal); }
+.hero-subtitle { font-size: 1.4rem; margin-bottom: 3rem; color: var(--hero-text-muted); font-weight: 500; transition: color var(--transition-normal); }
 .hero-buttons { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
 .btn { display: inline-flex; align-items: center; gap: 0.75rem; padding: 1rem 2rem; font-size: 1.1rem; font-weight: 600; border-radius: 50px; cursor: pointer; transition: var(--transition-slow); border: none; }
-.btn-primary { background: white; color: var(--primary-color); }
-.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); }
-.btn-secondary { background: rgba(255, 255, 255, 0.2); color: white; backdrop-filter: blur(10px); border: 2px solid rgba(255, 255, 255, 0.3); }
-.btn-secondary:hover { background: rgba(255, 255, 255, 0.3); transform: translateY(-3px); box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); }
+.btn-primary { background: var(--gradient-primary); color: white; box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3); }
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 24px rgba(79, 70, 229, 0.4); }
+.btn-secondary { background: var(--hero-btn-sec-bg); color: var(--hero-text); backdrop-filter: blur(10px); border: 2px solid var(--hero-btn-sec-border); }
+.btn-secondary:hover { background: var(--hero-btn-sec-border); transform: translateY(-3px); box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1); }
 
 img[src=""], img:not([src]) { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); min-height: 200px; display: flex; align-items: center; justify-content: center; position: relative; }
 img[src=""]::after, img:not([src])::after { content: '📸 Thêm ảnh ở đây'; color: white; font-size: 1.2rem; font-weight: 600; position: absolute; width: 100%; text-align: center; background: rgba(0, 0, 0, 0.3); padding: 1rem; }
 
 /* ============================================
-   CÁC THẺ (CARDS) ĐƯỢC ĐỒNG BỘ DARK MODE
+   CÁC THẺ (CARDS)
    ============================================ */
 .school-content { display: flex; flex-direction: column; gap: 3rem; }
 .school-image-container { border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-lg); }
@@ -203,7 +227,6 @@ img[src=""]::after, img:not([src])::after { content: '📸 Thêm ảnh ở đây
 .teacher-image { width: 100%; aspect-ratio: 4/5; object-fit: cover; }
 .teacher-role, .teacher-description { color: var(--text-muted); font-size: 1.1rem; }
 
-/* Về Nhóm */
 .members-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem; margin-bottom: 4rem; }
 .member-card { perspective: 1000px; height: 600px; }
 .member-card-inner { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55); border-radius: 16px; box-shadow: var(--shadow-lg); }
@@ -233,7 +256,7 @@ img[src=""]::after, img:not([src])::after { content: '📸 Thêm ảnh ở đây
 .gallery-image { width: 100%; height: 300px; object-fit: cover; }
 
 /* ============================================
-   EMBEDDED AI COUNSELOR (GÓC TƯ VẤN NHÚNG) - CHUẨN DARK MODE
+   EMBEDDED AI COUNSELOR 
    ============================================ */
 .embedded-chat-wrapper { max-width: 1000px; margin: 0 auto; background-color: var(--bg-card); border-radius: 28px; box-shadow: var(--shadow-xl); overflow: hidden; border: 1px solid var(--border-color); transition: background-color var(--transition-normal); }
 .embedded-chat-container { display: flex; height: 600px; flex-direction: row; }
@@ -244,7 +267,6 @@ img[src=""]::after, img:not([src])::after { content: '📸 Thêm ảnh ở đây
 .ai-profile p { color: var(--text-muted); font-size: 0.95rem; }
 .topic-list h4 { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
 
-/* Nút bấm chủ đề */
 .topic-btn { width: 100%; text-align: left; background-color: var(--bg-card); border: 1px solid var(--border-color); padding: 12px 16px; border-radius: 12px; margin-bottom: 10px; cursor: pointer; font-family: inherit; font-weight: 500; font-size: 0.95rem; color: var(--text-main); transition: var(--transition-fast); }
 .topic-btn:hover { transform: translateY(-2px); border-color: var(--secondary-color); box-shadow: 0 4px 12px rgba(14, 165, 233, 0.1); color: var(--primary-color); }
 
@@ -252,35 +274,31 @@ img[src=""]::after, img:not([src])::after { content: '📸 Thêm ảnh ở đây
 .embed-messages { flex: 1; padding: 30px; overflow-y: auto; display: flex; flex-direction: column; gap: 16px; scroll-behavior: smooth; }
 .embed-input { display: flex; padding: 20px 30px; background-color: var(--bg-card); border-top: 1px solid var(--border-color); gap: 15px; flex-shrink: 0; }
 
-/* Ô nhập chữ */
 .embed-input input { flex: 1 1 auto; min-width: 0; padding: 16px 24px; background-color: var(--bg-main); color: var(--text-main); border: 1px solid var(--border-color); border-radius: 30px; font-size: 1.05rem; outline: none; transition: all 0.3s; font-family: inherit; }
 .embed-input input:focus { border-color: var(--primary-color); box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1); }
 .embed-input button { flex: 0 0 56px; width: 56px; height: 56px; border-radius: 50%; background: var(--primary-color); color: white; border: none; cursor: pointer; font-size: 1.2rem; transition: all 0.2s; }
 .embed-input button:hover { transform: scale(1.1) rotate(5deg); background: var(--accent-2); box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3); }
 
-/* Khối tin nhắn */
 .message { max-width: 85%; padding: 14px 18px; border-radius: 20px; font-size: 1rem; line-height: 1.5; word-wrap: break-word; animation: messageSlideIn 0.4s ease forwards; transform-origin: bottom; }
 @keyframes messageSlideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-/* Tin nhắn của Bot */
 .bot-message { background-color: var(--bg-main); color: var(--text-main); align-self: flex-start; border-bottom-left-radius: 4px; border: 1px solid var(--border-color); }
-/* Tin nhắn của người dùng */
 .user-message { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
 
 /* ============================================
-   FOOTER
+   FOOTER (ĐÃ FIX ĐỒNG BỘ THEME)
    ============================================ */
-.footer { background: linear-gradient(135deg, #0F172A, #020617); color: white; padding: 4rem 0 2rem; }
+.footer { background: var(--footer-bg); color: var(--footer-text); padding: 4rem 0 2rem; border-top: 1px solid var(--border-color); transition: background-color var(--transition-normal); }
 .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 3rem; }
-.footer-section h3 { color: white; margin-bottom: 1.5rem; }
+.footer-section h3 { color: var(--footer-text); margin-bottom: 1.5rem; transition: color var(--transition-normal); }
 .footer-links { list-style: none; }
 .footer-links li { margin-bottom: 1rem; }
-.footer-links a { color: rgba(255, 255, 255, 0.7); }
-.footer-links a:hover { color: var(--accent-color); padding-left: 5px; }
-.footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.1); color: rgba(255, 255, 255, 0.5); font-size: 0.95rem; }
+.footer-links a { color: var(--footer-text-muted); transition: color var(--transition-fast); }
+.footer-links a:hover { color: var(--primary-color); padding-left: 5px; }
+.footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid var(--border-color); color: var(--footer-text-muted); font-size: 0.95rem; }
 
 /* ============================================
-   TỐI ƯU SIÊU CHUẨN TRÊN ĐIỆN THOẠI (KHÔNG LỖI)
+   RESPONSIVE
    ============================================ */
 @media (max-width: 1024px) {
     .class-info-grid { grid-template-columns: 1fr; }
@@ -288,28 +306,16 @@ img[src=""]::after, img:not([src])::after { content: '📸 Thêm ảnh ở đây
 }
 
 @media (max-width: 768px) {
-    /* ĐIỀU CHỈNH QUAN TRỌNG: RESET ZOOM TRÊN ĐIỆN THOẠI ĐỂ KHÔNG BỊ BÉ XÍU */
-    html { 
-        zoom: 100%; 
-        font-size: 15px; 
-        scroll-padding-top: 70px; 
-    }
-    
+    html { zoom: 100%; font-size: 15px; scroll-padding-top: 70px; }
     .container { padding: 0 1.5rem; }
-    
-    /* Navbar Mobile */
     .nav-menu { position: fixed; top: 70px; left: -100%; width: 100%; height: calc(100vh - 70px); background-color: var(--bg-card); flex-direction: column; padding: 2rem; transition: left var(--transition-normal); border-top: 1px solid var(--border-color); }
     .nav-menu.active { left: 0; }
     .mobile-menu-toggle { display: block; }
-    
-    /* Giao diện Section */
     .hero-buttons { flex-direction: column; }
     .school-info { grid-template-columns: 1fr; }
     .teacher-card { padding: 1.5rem; }
-    
-    /* Góc AI Mobile */
     .embedded-chat-container { flex-direction: column; height: 750px; }
     .chat-sidebar { width: 100%; padding: 20px; border-right: none; border-bottom: 1px solid var(--border-color); }
-    .ai-profile { display: none; /* Ẩn ảnh profile để tiết kiệm diện tích */ }
+    .ai-profile { display: none; }
     .embed-input { padding: 15px; }
 }
