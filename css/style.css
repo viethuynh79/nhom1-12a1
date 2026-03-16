@@ -51,6 +51,7 @@
 html {
     scroll-behavior: smooth;
     font-size: 16px;
+    zoom: 75%; /* LỆNH ÉP MẶC ĐỊNH ZOOM 75% TOÀN BỘ WEBSITE */
 }
 
 body {
