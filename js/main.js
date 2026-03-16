@@ -1,6 +1,8 @@
 // ============================================
-// 1. HIỆU ỨNG TRƯỢT & MENU (MƯỢT MÀ NHƯ IPHONE)
+// 1. HIỆU ỨNG TRƯỢT & CHẾ ĐỘ DARK MODE
 // ============================================
+
+// Khởi tạo hiệu ứng trượt (Scroll Reveal)
 document.addEventListener('DOMContentLoaded', () => {
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver(entries => {
@@ -12,9 +14,35 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, { threshold: 0.1 });
     reveals.forEach(el => observer.observe(el));
+
+    // Khởi tạo Dark Mode
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeIcon = themeToggleBtn ? themeToggleBtn.querySelector('i') : null;
+    
+    // Kiểm tra bộ nhớ xem người dùng đã chọn dark mode trước đó chưa
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    if (currentTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        if(themeIcon) themeIcon.className = 'fas fa-sun';
+    }
+
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+            let theme = document.documentElement.getAttribute('data-theme');
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+                themeIcon.className = 'fas fa-moon';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                themeIcon.className = 'fas fa-sun';
+            }
+        });
+    }
 });
 
-// Smooth Scroll trượt êm
+// Smooth Scroll trượt êm khi click menu
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
@@ -32,7 +60,8 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // 2. "BỘ NÃO" AI - KẾT NỐI DEEPSEEK API
 // ============================================
 
-// 👇 DÁN API KEY DEEPSEEK CỦA BẠN VÀO ĐÂY (Dải sk-...) 👇
+// ⚠️ CẢNH BÁO BẢO MẬT: Đặt API Key ở frontend (JS client) là rất nguy hiểm.
+// Bất kỳ ai cũng có thể f12 và lấy key này. Tốt nhất bạn nên có server trung gian.
 const DEEPSEEK_API_KEY = 'sk-069cb4fa81214690a5f173a13b723df6'; 
 
 const SYSTEM_PROMPT = "Bạn là Mentor 12A1, trợ lý của Nhóm 1 lớp 12A1 THPT Lê Quý Đôn. Hãy xưng Mình, gọi Bạn/Cậu. Bạn là chuyên gia tư vấn hướng nghiệp và tâm lý học đường cực kỳ thân thiện.";
@@ -122,23 +151,30 @@ chatConfigs.forEach(conf => {
     }
 });
 
-// Sidebar & Float Toggle & Navbar Effects
-const aiBtn = document.getElementById('ai-assistant-btn');
+// ============================================
+// 3. XỬ LÝ GIAO DIỆN NAVBAR & NÚT AI NỔI
+// ============================================
+
+const aiTriggerBtn = document.getElementById('ai-trigger-btn');
 const chatContainer = document.getElementById('chatbox-container');
 const closeBtn = document.getElementById('close-chat-btn');
 const mobileBtn = document.getElementById('mobile-menu-btn');
 
-if(aiBtn) aiBtn.onclick = () => chatContainer.classList.add('active');
+// Bật khung chat nổi khi nhấn nút Robot góc màn hình
+if(aiTriggerBtn) {
+    aiTriggerBtn.onclick = () => {
+        chatContainer.classList.add('active');
+    };
+}
+
+// Đóng khung chat nổi
 if(closeBtn) closeBtn.onclick = () => chatContainer.classList.remove('active');
+
+// Bật tắt menu trên điện thoại
 if(mobileBtn) mobileBtn.onclick = () => document.getElementById('nav-menu').classList.toggle('active');
 
+// Thay đổi background thanh Navbar khi cuộn chuột
 window.onscroll = () => {
     const nav = document.getElementById('navbar');
-    const btt = document.getElementById('back-to-top');
     if(nav) nav.classList.toggle('scrolled', window.scrollY > 50);
-    if(btt) btt.classList.toggle('show', window.scrollY > 500);
 };
-
-if(document.getElementById('back-to-top')) {
-    document.getElementById('back-to-top').onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
-}
