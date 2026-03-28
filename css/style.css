@@ -2,14 +2,12 @@
    GLOBAL STYLES & HỆ THỐNG BIẾN MÀU (CHUẨN DARK/LIGHT)
    ============================================ */
 :root {
-    /* Màu thương hiệu giữ nguyên */
     --primary-color: #4F46E5;      
     --secondary-color: #0EA5E9;    
     --accent-color: #10B981;       
     --accent-2: #8B5CF6;           
     --accent-3: #F43F5E;           
     
-    /* Giao diện LIGHT MODE (Sáng) mặc định */
     --bg-main: #F8FAFC;         
     --bg-card: #FFFFFF;         
     --bg-alt: #F1F5F9;          
@@ -18,7 +16,6 @@
     --nav-bg: rgba(255, 255, 255, 0.9);
     --border-color: rgba(0, 0, 0, 0.08);
     
-    /* Tự động đổi màu Hero (Phần đầu) ở Light Mode */
     --hero-bg: linear-gradient(135deg, #F8FAFC 0%, #EEF2FF 50%, #E0F2FE 100%);
     --hero-text: #1E293B;
     --hero-text-muted: #475569;
@@ -26,7 +23,6 @@
     --hero-btn-sec-bg: rgba(0, 0, 0, 0.05);
     --hero-btn-sec-border: rgba(0, 0, 0, 0.15);
 
-    /* Tự động đổi màu Footer ở Light Mode */
     --footer-bg: #F1F5F9;
     --footer-text: #1E293B;
     --footer-text-muted: #64748B;
@@ -49,7 +45,6 @@
     --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
 }
 
-/* Giao diện DARK MODE (Tối) */
 :root[data-theme="dark"] {
     --bg-main: #0F172A;         
     --bg-card: #1E293B;         
@@ -59,7 +54,6 @@
     --nav-bg: rgba(15, 23, 42, 0.9);
     --border-color: rgba(255, 255, 255, 0.1);
 
-    /* Màu Hero (Phần đầu) khi ở Dark Mode */
     --hero-bg: linear-gradient(135deg, #0F172A 0%, #1E1B4B 50%, #082F49 100%);
     --hero-text: #FFFFFF;
     --hero-text-muted: #CBD5E1;
@@ -67,7 +61,6 @@
     --hero-btn-sec-bg: rgba(255, 255, 255, 0.1);
     --hero-btn-sec-border: rgba(255, 255, 255, 0.25);
 
-    /* Màu Footer khi ở Dark Mode */
     --footer-bg: linear-gradient(135deg, #0F172A, #020617);
     --footer-text: #FFFFFF;
     --footer-text-muted: rgba(255, 255, 255, 0.6);
@@ -77,13 +70,9 @@
     --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.7);
 }
 
-/* ============================================
-   TỐI ƯU MẶC ĐỊNH (ZOOM 80% TRÊN MÁY TÍNH)
-   ============================================ */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 html { 
-    scroll-behavior: smooth; 
     zoom: 80%; 
     scroll-padding-top: 100px; 
 }
@@ -99,7 +88,6 @@ body {
     -webkit-font-smoothing: antialiased; 
 }
 
-/* Typography (Chữ) */
 h1, h2, h3, h4, h5, h6 { 
     font-family: var(--font-display); 
     font-weight: 700; 
@@ -114,7 +102,6 @@ a { text-decoration: none; color: inherit; transition: var(--transition-normal);
 img { max-width: 100%; height: auto; display: block; }
 .text-gradient { background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-/* Layout Blocks */
 .container { max-width: var(--container-max-width); margin: 0 auto; padding: 0 2rem; width: 100%; }
 .section { padding: var(--section-padding); position: relative; background-color: var(--bg-main); transition: background-color var(--transition-normal); }
 .section-alt { background-color: var(--bg-alt); }
@@ -124,20 +111,27 @@ img { max-width: 100%; height: auto; display: block; }
 .section-subtitle { font-size: 1.15rem; color: var(--text-muted); max-width: 600px; margin: 0 auto; line-height: 1.6; }
 
 /* ============================================
-   ANIMATIONS
+   ANIMATIONS - NÂNG CẤP CHUẨN IOS
    ============================================ */
-.reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
-.reveal.active { opacity: 1; transform: translateY(0); }
-.reveal.delay-1 { transition-delay: 0.2s; }
-.reveal.delay-2 { transition-delay: 0.4s; }
-.reveal.delay-3 { transition-delay: 0.6s; }
-.reveal.delay-4 { transition-delay: 0.8s; }
+.reveal { 
+    opacity: 0; 
+    transform: translateY(40px) scale(0.96); 
+    filter: blur(12px); 
+    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); 
+    will-change: transform, opacity, filter;
+}
+.reveal.active { 
+    opacity: 1; 
+    transform: translateY(0) scale(1); 
+    filter: blur(0);
+}
+.reveal.delay-1 { transition-delay: 0.15s; }
+.reveal.delay-2 { transition-delay: 0.3s; }
+.reveal.delay-3 { transition-delay: 0.45s; }
+.reveal.delay-4 { transition-delay: 0.6s; }
 @keyframes floating { 0% { transform: translateY(0px); } 50% { transform: translateY(-12px); } 100% { transform: translateY(0px); } }
 .floating-element { animation: floating 4s ease-in-out infinite; }
 
-/* ============================================
-   NAVBAR & DARK MODE TOGGLE
-   ============================================ */
 .navbar { 
     position: fixed; 
     top: 0; left: 0; width: 100%; 
@@ -155,22 +149,48 @@ img { max-width: 100%; height: auto; display: block; }
 .nav-link::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%) scaleX(0); width: 100%; height: 2px; background: var(--gradient-primary); transition: transform var(--transition-normal); border-radius: 2px; }
 .nav-link:hover::after, .nav-link.active::after { transform: translateX(-50%) scaleX(1); }
 
-.theme-toggle-btn { background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-main); font-size: 1.2rem; cursor: pointer; padding: 10px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: var(--transition-fast); }
-.theme-toggle-btn:hover { color: var(--primary-color); transform: rotate(-20deg) scale(1.1); box-shadow: var(--shadow-sm); }
+/* NÂNG CẤP ICON DARK/LIGHT MODE */
+.theme-toggle-btn { 
+    background: var(--bg-card); 
+    border: 2px solid var(--border-color); 
+    color: var(--text-main); 
+    font-size: 1.2rem; 
+    cursor: pointer; 
+    width: 44px; 
+    height: 44px;
+    border-radius: 50%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+    box-shadow: var(--shadow-sm);
+}
+.theme-toggle-btn:hover { 
+    color: var(--primary-color); 
+    border-color: var(--primary-color);
+    transform: translateY(-3px) scale(1.05); 
+    box-shadow: 0 8px 15px rgba(79, 70, 229, 0.2); 
+}
+.theme-toggle-btn:active {
+    transform: scale(0.9);
+}
+.theme-toggle-btn i {
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.2s;
+}
 .mobile-menu-toggle { display: none; background: none; border: none; font-size: 1.5rem; color: var(--primary-color); cursor: pointer; }
 
 /* ============================================
-   HERO SECTION (ĐÃ FIX LỖI ĐEN Ở LIGHT MODE)
+   HERO SECTION & PARALLAX CLASSES
    ============================================ */
-.hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; background: var(--hero-bg); padding-top: 80px; transition: background var(--transition-normal); }
-.background-shapes { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: 0; }
+.hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; background: var(--hero-bg); padding-top: 80px; transition: background var(--transition-normal); perspective: 1000px; }
+.background-shapes { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: 0; will-change: transform; }
 .shape { position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.2; animation: floatShape 20s infinite ease-in-out; }
 .shape-1 { width: 400px; height: 400px; background: var(--primary-color); top: 10%; left: 10%; animation-delay: 0s; }
 .shape-2 { width: 300px; height: 300px; background: var(--accent-color); top: 60%; right: 10%; animation-delay: 2s; }
 .shape-3 { width: 350px; height: 350px; background: var(--secondary-color); bottom: 10%; left: 20%; animation-delay: 4s; }
 @keyframes floatShape { 0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); } 25% { transform: translate(30px, -30px) scale(1.1) rotate(90deg); } 50% { transform: translate(-20px, 20px) scale(0.9) rotate(180deg); } 75% { transform: translate(40px, 10px) scale(1.05) rotate(270deg); } }
 .hero-container { position: relative; z-index: 1; }
-.hero-content { text-align: center; color: var(--hero-text); }
+.hero-content { text-align: center; color: var(--hero-text); will-change: transform, opacity; }
 .school-badge { display: inline-block; font-size: 1.1rem; font-weight: 600; padding: 0.75rem 2rem; background: var(--hero-badge-bg); backdrop-filter: blur(10px); border-radius: 50px; margin-bottom: 2rem; letter-spacing: 0.5px; color: var(--hero-text); border: 1px solid var(--hero-btn-sec-border); }
 .hero-title-class { font-size: clamp(3rem, 6vw, 4rem); font-weight: 800; line-height: 1.2; margin-bottom: 1rem; color: var(--hero-text); transition: color var(--transition-normal); }
 .group-badge { display: flex; align-items: center; justify-content: center; gap: 1rem; margin: 2rem 0; }
@@ -188,9 +208,6 @@ img { max-width: 100%; height: auto; display: block; }
 img[src=""], img:not([src]) { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); min-height: 200px; display: flex; align-items: center; justify-content: center; position: relative; }
 img[src=""]::after, img:not([src])::after { content: '📸 Thêm ảnh ở đây'; color: white; font-size: 1.2rem; font-weight: 600; position: absolute; width: 100%; text-align: center; background: rgba(0, 0, 0, 0.3); padding: 1rem; }
 
-/* ============================================
-   CÁC THẺ (CARDS)
-   ============================================ */
 .school-content { display: flex; flex-direction: column; gap: 3rem; }
 .school-image-container { border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-lg); }
 .school-image { width: 100%; aspect-ratio: 3/2; object-fit: cover; transition: transform 0.5s ease; }
@@ -256,7 +273,7 @@ img[src=""]::after, img:not([src])::after { content: '📸 Thêm ảnh ở đây
 .gallery-image { width: 100%; height: 300px; object-fit: cover; }
 
 /* ============================================
-   EMBEDDED AI COUNSELOR 
+   EMBEDDED AI COUNSELOR - ĐÃ TỐI ƯU RESPONSIVE
    ============================================ */
 .embedded-chat-wrapper { max-width: 1000px; margin: 0 auto; background-color: var(--bg-card); border-radius: 28px; box-shadow: var(--shadow-xl); overflow: hidden; border: 1px solid var(--border-color); transition: background-color var(--transition-normal); }
 .embedded-chat-container { display: flex; height: 600px; flex-direction: row; }
@@ -285,9 +302,6 @@ img[src=""]::after, img:not([src])::after { content: '📸 Thêm ảnh ở đây
 .bot-message { background-color: var(--bg-main); color: var(--text-main); align-self: flex-start; border-bottom-left-radius: 4px; border: 1px solid var(--border-color); }
 .user-message { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
 
-/* ============================================
-   FOOTER (ĐÃ FIX ĐỒNG BỘ THEME)
-   ============================================ */
 .footer { background: var(--footer-bg); color: var(--footer-text); padding: 4rem 0 2rem; border-top: 1px solid var(--border-color); transition: background-color var(--transition-normal); }
 .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 3rem; }
 .footer-section h3 { color: var(--footer-text); margin-bottom: 1.5rem; transition: color var(--transition-normal); }
@@ -298,7 +312,7 @@ img[src=""]::after, img:not([src])::after { content: '📸 Thêm ảnh ở đây
 .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid var(--border-color); color: var(--footer-text-muted); font-size: 0.95rem; }
 
 /* ============================================
-   RESPONSIVE
+   RESPONSIVE - TỐI ƯU TOÀN DIỆN CHO MOBILE
    ============================================ */
 @media (max-width: 1024px) {
     .class-info-grid { grid-template-columns: 1fr; }
@@ -314,8 +328,33 @@ img[src=""]::after, img:not([src])::after { content: '📸 Thêm ảnh ở đây
     .hero-buttons { flex-direction: column; }
     .school-info { grid-template-columns: 1fr; }
     .teacher-card { padding: 1.5rem; }
-    .embedded-chat-container { flex-direction: column; height: 750px; }
-    .chat-sidebar { width: 100%; padding: 20px; border-right: none; border-bottom: 1px solid var(--border-color); }
+    
+    /* FIX LỖI AI CHAT BỊ CHE TRÊN ĐIỆN THOẠI */
+    .embedded-chat-wrapper { margin: 0 10px; border-radius: 20px; }
+    .embedded-chat-container { 
+        flex-direction: column; 
+        height: 75vh; /* Dùng tỷ lệ màn hình linh hoạt */
+        min-height: 500px;
+        max-height: 700px; 
+    }
+    .chat-sidebar { 
+        width: 100%; 
+        padding: 15px; 
+        border-right: none; 
+        border-bottom: 1px solid var(--border-color); 
+        flex-direction: row; 
+        align-items: center;
+        overflow-x: auto; /* Cho phép lướt ngang nút gợi ý */
+    }
+    .chat-sidebar::-webkit-scrollbar { display: none; } /* Ẩn thanh cuộn ngang */
     .ai-profile { display: none; }
-    .embed-input { padding: 15px; }
+    .topic-list { display: flex; gap: 10px; flex-direction: row; width: max-content; }
+    .topic-list h4 { display: none; }
+    .topic-btn { margin-bottom: 0; padding: 8px 15px; white-space: nowrap; font-size: 0.9rem; border-radius: 20px; }
+    
+    .chat-main { height: 0; flex: 1; } /* Quan trọng để cuộn tin nhắn không tràn viền */
+    .embed-messages { padding: 20px 15px; }
+    .embed-input { padding: 15px; padding-bottom: max(15px, env(safe-area-inset-bottom)); } /* Tránh tai thỏ iOS */
+    .embed-input input { padding: 12px 20px; font-size: 1rem; }
+    .embed-input button { width: 45px; height: 45px; flex: 0 0 45px; }
 }
